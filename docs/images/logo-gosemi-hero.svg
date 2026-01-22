@@ -5,48 +5,74 @@
     </style>
   </defs>
 
-  <!-- Larger blue circle background -->
+  <!-- Blue circle background -->
   <circle cx="55" cy="55" r="50" fill="#2ba4dc"/>
 
-  <!-- More detailed circuit traces inside circle -->
-  <g stroke="#fff" stroke-width="1.5" fill="none" opacity="0.4">
-    <!-- Horizontal traces -->
-    <path d="M10 26 H26 L34 34"/>
-    <path d="M10 42 H22 L28 48"/>
-    <path d="M10 55 H20"/>
-    <path d="M10 68 H22 L28 62"/>
-    <path d="M10 84 H26 L34 76"/>
-    <path d="M76 34 L84 26 H100"/>
-    <path d="M82 48 L88 42 H100"/>
-    <path d="M90 55 H100"/>
-    <path d="M82 62 L88 68 H100"/>
-    <path d="M76 76 L84 84 H100"/>
-    <!-- Vertical traces -->
-    <path d="M26 10 V22 L34 30"/>
-    <path d="M42 10 V20"/>
-    <path d="M55 10 V18"/>
-    <path d="M68 10 V20"/>
-    <path d="M84 10 V22 L76 30"/>
-    <path d="M26 100 V88 L34 80"/>
-    <path d="M42 100 V90"/>
-    <path d="M55 100 V92"/>
-    <path d="M68 100 V90"/>
-    <path d="M84 100 V88 L76 80"/>
-    <!-- Cross traces -->
-    <path d="M34 34 L42 42"/>
-    <path d="M76 34 L68 42"/>
-    <path d="M34 76 L42 68"/>
-    <path d="M76 76 L68 68"/>
-    <!-- Circuit nodes -->
-    <circle cx="26" cy="26" r="3" fill="#fff" stroke="none"/>
-    <circle cx="84" cy="26" r="3" fill="#fff" stroke="none"/>
-    <circle cx="26" cy="84" r="3" fill="#fff" stroke="none"/>
-    <circle cx="84" cy="84" r="3" fill="#fff" stroke="none"/>
-    <circle cx="42" cy="42" r="2.5" fill="#fff" stroke="none"/>
-    <circle cx="68" cy="42" r="2.5" fill="#fff" stroke="none"/>
-    <circle cx="42" cy="68" r="2.5" fill="#fff" stroke="none"/>
-    <circle cx="68" cy="68" r="2.5" fill="#fff" stroke="none"/>
-    <circle cx="55" cy="55" r="3.5" fill="#fff" stroke="none"/>
+  <!-- Circuit pattern - PCB style with clean lines and nodes -->
+  <g stroke="#fff" stroke-width="1.4" fill="none" opacity="0.5" stroke-linecap="round">
+    <!-- Main horizontal bus lines -->
+    <path d="M10 35 H24 L30 41 H44"/>
+    <path d="M10 55 H22"/>
+    <path d="M10 75 H24 L30 69 H44"/>
+    <path d="M66 41 L72 35 H86 L92 29 H102"/>
+    <path d="M88 55 H102"/>
+    <path d="M66 69 L72 75 H86 L92 81 H102"/>
+
+    <!-- Vertical bus lines -->
+    <path d="M35 10 V24 L41 30 V44"/>
+    <path d="M55 10 V22"/>
+    <path d="M75 10 V24 L69 30 V44"/>
+    <path d="M35 66 L41 72 V86 L35 92 V102"/>
+    <path d="M55 88 V102"/>
+    <path d="M75 66 L69 72 V86 L75 92 V102"/>
+
+    <!-- Inner connecting traces -->
+    <path d="M44 41 H48 V48"/>
+    <path d="M66 41 H62 V48"/>
+    <path d="M48 62 V69 H44"/>
+    <path d="M62 62 V69 H66"/>
+
+    <!-- Branch traces -->
+    <path d="M30 41 V50"/>
+    <path d="M80 41 V50"/>
+    <path d="M30 60 V69"/>
+    <path d="M80 60 V69"/>
+
+    <!-- Small detail traces -->
+    <path d="M16 26 H24"/>
+    <path d="M16 84 H24"/>
+    <path d="M86 26 H94"/>
+    <path d="M86 84 H94"/>
+  </g>
+
+  <!-- Circuit nodes/pads -->
+  <g fill="#fff" opacity="0.6">
+    <!-- Corner nodes -->
+    <circle cx="24" cy="35" r="3"/>
+    <circle cx="86" cy="35" r="3"/>
+    <circle cx="24" cy="75" r="3"/>
+    <circle cx="86" cy="75" r="3"/>
+    <!-- Edge nodes -->
+    <circle cx="35" cy="24" r="3"/>
+    <circle cx="75" cy="24" r="3"/>
+    <circle cx="35" cy="86" r="3"/>
+    <circle cx="75" cy="86" r="3"/>
+    <!-- Inner ring nodes -->
+    <circle cx="44" cy="41" r="2.5"/>
+    <circle cx="66" cy="41" r="2.5"/>
+    <circle cx="44" cy="69" r="2.5"/>
+    <circle cx="66" cy="69" r="2.5"/>
+    <!-- Center node -->
+    <circle cx="55" cy="55" r="3.5"/>
+    <!-- Small detail nodes -->
+    <circle cx="30" cy="50" r="2"/>
+    <circle cx="80" cy="50" r="2"/>
+    <circle cx="30" cy="60" r="2"/>
+    <circle cx="80" cy="60" r="2"/>
+    <circle cx="48" cy="48" r="2"/>
+    <circle cx="62" cy="48" r="2"/>
+    <circle cx="48" cy="62" r="2"/>
+    <circle cx="62" cy="62" r="2"/>
   </g>
 
   <!-- GO text inside circle -->
@@ -61,38 +87,48 @@
   <!-- BEY -->
   <text x="228" y="66" class="logo-text" font-size="32" font-weight="500" fill="#333" letter-spacing="0.5">BEY</text>
 
-  <!-- O - positioned at approximately x=288 -->
+  <!-- O -->
   <text x="288" y="66" class="logo-text" font-size="32" font-weight="500" fill="#333" letter-spacing="0.5">O</text>
 
   <!-- ND -->
   <text x="310" y="66" class="logo-text" font-size="32" font-weight="500" fill="#333" letter-spacing="0.5">ND</text>
 
-  <!-- Radiating dots from the O in BEYOND -->
-  <!-- O center is at approximately x=297, y=55 -->
+  <!-- Radiating dots surrounding the O in BEYOND (360 degrees) -->
+  <!-- O center is approximately x=297, y=55 -->
   <g>
-    <!-- Ray 1 - right horizontal -->
-    <circle cx="320" cy="55" r="1.8" fill="#2ba4dc" opacity="0.9"/>
-    <circle cx="335" cy="55" r="2.6" fill="#2ba4dc" opacity="0.6"/>
-    <circle cx="352" cy="55" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+    <!-- Right (0 deg) -->
+    <circle cx="315" cy="55" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="330" cy="55" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="348" cy="55" r="3.6" fill="#2ba4dc" opacity="0.35"/>
 
-    <!-- Ray 2 - upper right (30 deg) -->
-    <circle cx="316" cy="42" r="1.8" fill="#2ba4dc" opacity="0.9"/>
-    <circle cx="328" cy="30" r="2.6" fill="#2ba4dc" opacity="0.6"/>
-    <circle cx="342" cy="16" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+    <!-- Upper right (45 deg) -->
+    <circle cx="310" cy="42" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="322" cy="30" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="336" cy="16" r="3.6" fill="#2ba4dc" opacity="0.35"/>
 
-    <!-- Ray 3 - lower right (330 deg) -->
-    <circle cx="316" cy="68" r="1.8" fill="#2ba4dc" opacity="0.9"/>
-    <circle cx="328" cy="80" r="2.6" fill="#2ba4dc" opacity="0.6"/>
-    <circle cx="342" cy="94" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+    <!-- Up (90 deg) -->
+    <circle cx="297" cy="38" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="297" cy="23" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="297" cy="6" r="3.6" fill="#2ba4dc" opacity="0.35"/>
 
-    <!-- Ray 4 - upper (60 deg) -->
-    <circle cx="305" cy="38" r="1.8" fill="#2ba4dc" opacity="0.9"/>
-    <circle cx="311" cy="22" r="2.6" fill="#2ba4dc" opacity="0.6"/>
-    <circle cx="318" cy="4" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+    <!-- Upper left (135 deg) -->
+    <circle cx="284" cy="42" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="272" cy="30" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="258" cy="16" r="3.6" fill="#2ba4dc" opacity="0.35"/>
 
-    <!-- Ray 5 - lower (300 deg) -->
-    <circle cx="305" cy="72" r="1.8" fill="#2ba4dc" opacity="0.9"/>
-    <circle cx="311" cy="88" r="2.6" fill="#2ba4dc" opacity="0.6"/>
-    <circle cx="318" cy="106" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+    <!-- Down (270 deg) -->
+    <circle cx="297" cy="72" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="297" cy="87" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="297" cy="104" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+
+    <!-- Lower right (315 deg) -->
+    <circle cx="310" cy="68" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="322" cy="80" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="336" cy="94" r="3.6" fill="#2ba4dc" opacity="0.35"/>
+
+    <!-- Lower left (225 deg) -->
+    <circle cx="284" cy="68" r="1.8" fill="#2ba4dc" opacity="0.9"/>
+    <circle cx="272" cy="80" r="2.6" fill="#2ba4dc" opacity="0.6"/>
+    <circle cx="258" cy="94" r="3.6" fill="#2ba4dc" opacity="0.35"/>
   </g>
 </svg>
