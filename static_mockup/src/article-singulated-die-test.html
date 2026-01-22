@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{> head }}
+    <title>Singulated Die Test Ensures Stacked Die Quality - Go Semi & Beyond</title>
+</head>
+<body>
+{{> header }}
+
+    <article class="article-page">
+        <div class="article-header">
+            <span class="article-label">Top Story</span>
+            <div class="article-meta">January 2026 &bull; By Brent Bullock, Advantest America</div>
+            <h1 class="article-title">Singulated Die Test Ensures Stacked Die Quality as Power Density Rises</h1>
+            <p style="font-style: italic; color: var(--COLOR_TEXT_SECONDARY);">Editor's note: This article is based on the poster "The Age of Singulated Die Test" presented at the Test Vision Symposium held in conjunction with SEMICON West, October 7-9, 2025, Phoenix, AZ.</p>
+        </div>
+
+        <img src="images/placeholder-featured.svg" alt="Singulated Die Test" class="article-hero">
+
+        <div class="article-body">
+            <p>The accelerating rate at which the industry adopts new process nodes is posing critical test challenges. Shrinking geometries combined with increased design complexity with respect to metrics such as gates per square micrometer, plus higher operating frequencies, are leading to ever higher levels of power density.</p>
+
+            <p>The resulting device thermal excursions are driving the need for singulated die test (SDT) with active thermal control (ATC), which combine to boost yields and ensure the quality of the chiplets and other die that make up multichip packages for high-performance computing (HPC) and artificial-intelligence (AI) server farms.</p>
+
+            <p>SDT detects defects that do not appear until after singulation, which are most often faults in chip-to-chip interconnects. SDT can also improve device handling efficiency, so it is applicable to multiple test scenarios, with test content varying accordingly:</p>
+
+            <ul>
+                <li>Die-probe insertion using Final-Test conditions</li>
+                <li>Die matching and die-bank rescreening</li>
+                <li>Complex chip-on-wafer/known-good assembly testing</li>
+                <li>Extended yield learning</li>
+                <li>Silicon-photonics optical-engine testing</li>
+            </ul>
+
+            <h2>Power-Density Growth</h2>
+
+            <p>Power density has shown dramatic growth in the HPC/AI era. The high power density in turn produces large thermal gradients, with the low to max temperature changes increasing dramatically in both mission mode and test mode as process geometries shrink. These large temperature gradients lead to increased yield loss due to challenges in maintaining the set temperature.</p>
+
+            <p>Consequently, Advantest customers are taking steps to monitor and control the thermal gradients and respond to the temperature excursions from the wafer-sort level through final test.</p>
+
+            <p>However, the ability to control thermal behavior during various test insertions has been problematic, requiring close attention to the thermal interfaces and differing thermal masses. Thermal control at wafer sort traditionally has been very limited, because a single large chuck, historically with just a single sensor in the middle of it, provides temperature control. Subsequent chuck configurations included multiple sensors in multiple zones, approaches that did provide some relief and drove yield improvements. Package test also presents challenges, because the package itself, potentially with a lid, adds thermal mass.</p>
+
+            <h2>Die-Probe Insertion</h2>
+
+            <p>Die-probe insertion offers one solution, with thermal control required for only a small piece of the wafer—the singulated die—allowing thermal interfacing directly without a lid, so the thermal mass is very low and the thermal characteristics very different. With the arrival of high-power-density devices, SDT, which has existed since about 2015 but has found limited adoption, is now gaining interest.</p>
+
+            <p>SDT allows customers to respond to temperature changes very quickly, and Advantest has been involved in studies in this area. In particular, customers have CoWoS and similar advanced package assemblies, and many defects in such structures do not appear until after the singulation process, which applies mechanical stress to each die.</p>
+
+            <p>Furthermore, temperature stresses for singulated dies can be greater because each singulated chip cannot rely on the mass of the entire wafer, which provides mechanical strength and thermal dissipation. The combination of mechanical and thermal stresses increases the chances of faults at the die-to-die interconnects, whether in CoWoS assemblies or HBM stacks. The latter continues to present yield challenges as stack heights continue to grow.</p>
+
+            <h2>Benefits of Singulated Die Test</h2>
+
+            <p>There are several benefits to singulated die test. The main focus is on temperature response—the ability to regulate thermal excursions during a wafer-sort insertion by mimicking the final-test conditions. Some Advantest customers have a discrepancy between final-test temperature and wafer-sort temperature set points because the wafer-probe environment has been more challenging.</p>
+
+            <p>The singulated die probe allows better control to mitigate the thermal excursions and probe burn risk that are more common with typical chuck-based probe insertions. With the rise of chiplet technology and stacked-die use, it is increasingly likely that good dies can be mixed with bad dies, resulting in good dies, substrates, and interposers being discarded.</p>
+
+            <p>SDT can also accelerate product release cycles, speeding time to market. With traditional wafer probing, a few bad dies can hold up a complete wafer as engineers study yield problems and determine how to fix them. With SDT, bad dies can be held back for study, but good dies can immediately proceed on to packaging and final test and on to customers.</p>
+
+            <h2>Die-Level Handler</h2>
+
+            <p>Equipment that can address the challenges of singulated die test includes the Advantest HA1200 die-level handler, which, when equipped with an active thermal interface (ATI), can be used in conjunction with test systems such as the Advantest V93000 SoC tester. The combination can enable the test of high-end SoCs with excellent test coverage, helping to reduce yield loss at the final test of multi-die assembled products.</p>
+
+            <p>A specific study conducted by Advantest included an analog-to-digital converter attached to the probe load board to capture profiles of device current, voltage, and junction temperature; an HA1200 die-level handler configured with two generations of the company's ATI thermal solution; and a V93000 tester programmed to test a 6-nm CPU chiplet die.</p>
+
+            <h2>Conclusion</h2>
+
+            <p>Advantest's HA1200 handler equipped with ATC has demonstrated the ability to precisely regulate temperatures, allowing a singulated die test to simulate final-test conditions. An Advantest study has demonstrated that SDT is effective in controlling temperatures as process geometries shrink and power densities rise for HPC and AI devices with HBM stacks and CoWoS structures.</p>
+
+            <p><strong>Acknowledgements:</strong> Advantest team members in Japan, Taiwan, Singapore, and the U.S.A. contributed to this work.</p>
+        </div>
+    </article>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Stay Informed</h2>
+            <p>Subscribe to Go Semi & Beyond for more technical insights.</p>
+            <a href="subscribe.html" class="btn-primary">Subscribe Today</a>
+        </div>
+    </section>
+
+{{> footer }}
+
+    <script src="js/main.js"></script>
+</body>
+</html>
