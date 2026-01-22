@@ -1,42 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80">
   <defs>
-    <!-- Circuit pattern for the GO circle -->
-    <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M0 10 H8 M12 10 H20 M10 0 V8 M10 12 V20" stroke="#1a8fcf" stroke-width="1" fill="none"/>
-      <circle cx="10" cy="10" r="2" fill="#1a8fcf"/>
-      <circle cx="0" cy="10" r="1.5" fill="#1a8fcf"/>
-      <circle cx="20" cy="10" r="1.5" fill="#1a8fcf"/>
-      <circle cx="10" cy="0" r="1.5" fill="#1a8fcf"/>
-      <circle cx="10" cy="20" r="1.5" fill="#1a8fcf"/>
-    </pattern>
+    <style>
+      .logo-text { font-family: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
   </defs>
 
-  <!-- Blue circle with circuit pattern -->
-  <circle cx="40" cy="40" r="38" fill="#2ba4dc"/>
-  <circle cx="40" cy="40" r="38" fill="url(#circuit)" opacity="0.4"/>
+  <!-- Blue circle background -->
+  <circle cx="40" cy="40" r="36" fill="#2ba4dc"/>
 
-  <!-- Circuit traces overlay -->
-  <g stroke="#1a8fcf" stroke-width="1.2" fill="none" opacity="0.5">
-    <path d="M15 25 H25 L30 30 H50"/>
-    <path d="M10 40 H20 L25 35"/>
-    <path d="M15 55 H30 L35 50 H55"/>
-    <path d="M25 15 V25 L30 30"/>
-    <path d="M55 20 V30 L50 35"/>
-    <path d="M60 45 H50 L45 50"/>
-    <path d="M40 60 V50"/>
-    <circle cx="25" cy="25" r="2"/>
-    <circle cx="55" cy="30" r="2"/>
-    <circle cx="50" cy="50" r="2"/>
-    <circle cx="30" cy="55" r="2"/>
+  <!-- Simplified circuit traces inside circle -->
+  <g stroke="#fff" stroke-width="1.5" fill="none" opacity="0.35">
+    <!-- Horizontal traces -->
+    <path d="M12 28 H28 L34 34"/>
+    <path d="M12 40 H22"/>
+    <path d="M12 52 H24 L32 44"/>
+    <path d="M48 34 L54 28 H68"/>
+    <path d="M58 40 H68"/>
+    <path d="M48 46 L56 54 H68"/>
+    <!-- Vertical traces -->
+    <path d="M28 12 V24"/>
+    <path d="M40 12 V20"/>
+    <path d="M52 12 V24"/>
+    <path d="M28 56 V68"/>
+    <path d="M40 60 V68"/>
+    <path d="M52 56 V68"/>
+    <!-- Circuit nodes -->
+    <circle cx="28" cy="28" r="2.5" fill="#fff" stroke="none"/>
+    <circle cx="52" cy="28" r="2.5" fill="#fff" stroke="none"/>
+    <circle cx="28" cy="52" r="2.5" fill="#fff" stroke="none"/>
+    <circle cx="52" cy="52" r="2.5" fill="#fff" stroke="none"/>
+    <circle cx="40" cy="40" r="3" fill="#fff" stroke="none"/>
   </g>
 
-  <!-- GO text -->
-  <text x="40" y="50" font-family="'Open Sans', Arial, sans-serif" font-size="28" font-weight="300" fill="white" text-anchor="middle">GO</text>
+  <!-- GO text inside circle -->
+  <text x="40" y="49" class="logo-text" font-size="26" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1">GO</text>
 
-  <!-- SEMI & BEYOND text -->
-  <text x="95" y="50" font-family="'Open Sans', Arial, sans-serif" font-size="28" fill="#333" font-weight="300">
-    <tspan fill="#333">SEMI</tspan>
-    <tspan fill="#91003c" dx="4">&amp;</tspan>
-    <tspan fill="#333" dx="4">BEYOND</tspan>
-  </text>
+  <!-- SEMI text -->
+  <text x="90" y="49" class="logo-text" font-size="26" font-weight="600" fill="#333" letter-spacing="1">SEMI</text>
+
+  <!-- & symbol -->
+  <text x="158" y="49" class="logo-text" font-size="26" font-weight="600" fill="#91003c" letter-spacing="1">&amp;</text>
+
+  <!-- BEYOND text -->
+  <text x="182" y="49" class="logo-text" font-size="26" font-weight="600" fill="#333" letter-spacing="1">BEYOND</text>
+
+  <!-- Radiating dots from the O in BEYOND -->
+  <!-- The O in BEYOND is approximately at x=358, y=40 (center) -->
+  <!-- Rays extend outward - dots increase in size, decrease in opacity -->
+  <g>
+    <!-- Ray 1 - upper right diagonal -->
+    <circle cx="370" cy="28" r="1.8" fill="#2ba4dc" opacity="0.7"/>
+    <circle cx="378" cy="20" r="2.4" fill="#2ba4dc" opacity="0.5"/>
+    <circle cx="388" cy="10" r="3.2" fill="#2ba4dc" opacity="0.3"/>
+
+    <!-- Ray 2 - right horizontal -->
+    <circle cx="374" cy="40" r="1.8" fill="#2ba4dc" opacity="0.7"/>
+    <circle cx="384" cy="40" r="2.4" fill="#2ba4dc" opacity="0.5"/>
+    <circle cx="396" cy="40" r="3.2" fill="#2ba4dc" opacity="0.3"/>
+
+    <!-- Ray 3 - lower right diagonal -->
+    <circle cx="370" cy="52" r="1.8" fill="#2ba4dc" opacity="0.7"/>
+    <circle cx="378" cy="60" r="2.4" fill="#2ba4dc" opacity="0.5"/>
+    <circle cx="388" cy="70" r="3.2" fill="#2ba4dc" opacity="0.3"/>
+
+    <!-- Ray 4 - upper diagonal (steeper) -->
+    <circle cx="364" cy="26" r="1.8" fill="#2ba4dc" opacity="0.7"/>
+    <circle cx="368" cy="16" r="2.4" fill="#2ba4dc" opacity="0.5"/>
+    <circle cx="373" cy="4" r="3.2" fill="#2ba4dc" opacity="0.3"/>
+
+    <!-- Ray 5 - lower diagonal (steeper) -->
+    <circle cx="364" cy="54" r="1.8" fill="#2ba4dc" opacity="0.7"/>
+    <circle cx="368" cy="64" r="2.4" fill="#2ba4dc" opacity="0.5"/>
+    <circle cx="373" cy="76" r="3.2" fill="#2ba4dc" opacity="0.3"/>
+  </g>
 </svg>
