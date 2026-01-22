@@ -8,6 +8,16 @@ Usage:
 
 Template syntax:
     {{> partial_name }}  - Include a partial from src/partials/partial_name.html
+    {{title}}            - Page title (set in front-matter)
+    {{content}}          - Page content (in layouts)
+
+Page front-matter (at top of page files):
+    ---
+    title: Page Title Here
+    layout: base
+    ---
+
+    <page content here>
 """
 
 import os
@@ -21,14 +31,16 @@ from pathlib import Path
 # Configuration
 SRC_DIR = Path(__file__).parent / 'src'
 PARTIALS_DIR = SRC_DIR / 'partials'
+LAYOUTS_DIR = SRC_DIR / 'layouts'
+PAGES_DIR = SRC_DIR / 'pages'
 STATIC_MOCKUP_DIR = Path(__file__).parent
 OUTPUT_DIR = Path(__file__).parent.parent / 'docs'  # Output to /docs for GitHub Pages
 
 # Static asset directories to copy
 STATIC_DIRS = ['css', 'js', 'images']
 
-# Files to ignore (not templates)
-IGNORE_PATTERNS = ['partials']
+# Files/directories to ignore
+IGNORE_PATTERNS = ['partials', 'layouts', 'pages']
 
 
 def load_partials():
@@ -40,6 +52,49 @@ def load_partials():
             partials[name] = partial_file.read_text(encoding='utf-8')
             print(f"  Loaded partial: {name}")
     return partials
+
+
+def load_layouts():
+    """Load all layout templates from the layouts directory."""
+    layouts = {}
+    if LAYOUTS_DIR.exists():
+        for layout_file in LAYOUTS_DIR.glob('*.html'):
+            name = layout_file.stem
+            layouts[name] = layout_file.read_text(encoding='utf-8')
+            print(f"  Loaded layout: {name}")
+    return layouts
+
+
+def parse_front_matter(content):
+    """Parse front-matter from page content.
+
+    Front-matter format:
+    ---
+    title: Page Title
+    layout: base
+    ---
+
+    Returns (metadata_dict, content_without_front_matter)
+    """
+    metadata = {
+        'title': 'Go Semi & Beyond',
+        'layout': 'base'
+    }
+
+    # Check for front-matter
+    if content.startswith('---'):
+        parts = content.split('---', 2)
+        if len(parts) >= 3:
+            # Parse the front-matter
+            front_matter = parts[1].strip()
+            for line in front_matter.split('\n'):
+                if ':' in line:
+                    key, value = line.split(':', 1)
+                    metadata[key.strip()] = value.strip()
+            # Return content without front-matter
+            return metadata, parts[2].strip()
+
+    return metadata, content
 
 
 def process_template(content, partials):
@@ -56,6 +111,29 @@ def process_template(content, partials):
             return match.group(0)  # Return original if not found
 
     return re.sub(pattern, replace_partial, content)
+
+
+def process_page_with_layout(page_content, layouts, partials):
+    """Process a page file with front-matter and apply layout."""
+    # Parse front-matter
+    metadata, content = parse_front_matter(page_content)
+
+    # Get the layout
+    layout_name = metadata.get('layout', 'base')
+    if layout_name not in layouts:
+        print(f"  Warning: Layout '{layout_name}' not found, using content as-is")
+        return process_template(page_content, partials)
+
+    layout = layouts[layout_name]
+
+    # Replace {{title}} and {{content}} in layout
+    result = layout.replace('{{title}}', metadata.get('title', 'Go Semi & Beyond'))
+    result = result.replace('{{content}}', content)
+
+    # Process partials
+    result = process_template(result, partials)
+
+    return result
 
 
 def copy_static_assets():
@@ -90,10 +168,30 @@ def build_templates():
     if not partials:
         print("  No partials found in", PARTIALS_DIR)
 
-    # Process each HTML file in src/ (excluding partials directory)
-    print("\nProcessing templates:")
+    # Load layouts
+    print("\nLoading layouts:")
+    layouts = load_layouts()
+
+    if not layouts:
+        print("  No layouts found in", LAYOUTS_DIR)
+
     templates_processed = 0
 
+    # Process pages from src/pages/ (new layout-based system)
+    if PAGES_DIR.exists():
+        print("\nProcessing pages (with layouts):")
+        for page_file in PAGES_DIR.glob('*.html'):
+            content = page_file.read_text(encoding='utf-8')
+            processed = process_page_with_layout(content, layouts, partials)
+
+            output_file = OUTPUT_DIR / page_file.name
+            output_file.write_text(processed, encoding='utf-8')
+
+            print(f"  pages/{page_file.name} -> docs/{page_file.name}")
+            templates_processed += 1
+
+    # Process legacy templates from src/ root (backward compatibility)
+    print("\nProcessing templates (legacy):")
     for template_file in SRC_DIR.glob('*.html'):
         # Skip if in ignore patterns
         if any(pattern in str(template_file) for pattern in IGNORE_PATTERNS):
@@ -102,8 +200,12 @@ def build_templates():
         # Read template
         content = template_file.read_text(encoding='utf-8')
 
-        # Process partials
-        processed = process_template(content, partials)
+        # Check if it has front-matter (new style)
+        if content.startswith('---'):
+            processed = process_page_with_layout(content, layouts, partials)
+        else:
+            # Legacy: just process partials
+            processed = process_template(content, partials)
 
         # Write output
         output_file = OUTPUT_DIR / template_file.name
