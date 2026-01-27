@@ -54,14 +54,15 @@ STATIC_DIRS = ['css', 'js', 'images']
 # Files/directories to ignore
 IGNORE_PATTERNS = ['partials', 'layouts', 'pages']
 
-# Category display name mappings
+# Category display name mappings (empty string = hide label)
 CATEGORY_MAPPING = {
     'Upcoming Events': 'Events',
+    'Uncategorized': '',
 }
 
 
 def normalize_category(category):
-    """Normalize category names for display."""
+    """Normalize category names for display. Returns empty string to hide label."""
     return CATEGORY_MAPPING.get(category, category)
 
 
@@ -135,6 +136,12 @@ def clean_markdown(content):
     content = re.sub(r'AI-generated content may be incorrect\.?', '', content)
     # Clean up superscript notation (e.g., cm^2^)
     content = re.sub(r'\^(\d+)\^', r'<sup>\1</sup>', content)
+    # Remove Divi/ET builder artifacts
+    content = re.sub(r'\s*end \.et_[a-z_0-9]+\s*', ' ', content)
+    content = re.sub(r'\s*\.et_builder\s*', ' ', content)
+    content = re.sub(r'\s*end \.post_content\s*', '', content)
+    # Clean up multiple spaces
+    content = re.sub(r'  +', ' ', content)
     return content
 
 
