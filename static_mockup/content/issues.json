@@ -1,5 +1,54 @@
 [
   {
+    "title": "September 2025",
+    "month": "September",
+    "year": "2025",
+    "url": "https://www.gosemiandbeyond.com/current-issue/",
+    "slug": "september-2025",
+    "articles": [
+      {
+        "url": "https://www.gosemiandbeyond.com/tackling-chip-complexity-with-integrated-system-level-test-solutions/",
+        "slug": "tackling-chip-complexity-with-integrated-system-level-test-solutions",
+        "text": "Top Story"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/ai-memory-enabling-the-next-era-of-high-performance-computing/",
+        "slug": "ai-memory-enabling-the-next-era-of-high-performance-computing",
+        "text": "Top Story"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/how-ai-enables-adaptive-probe-cleaning/",
+        "slug": "how-ai-enables-adaptive-probe-cleaning",
+        "text": "Top Story"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/rethinking-security-in-semiconductor-testing-why-containment-is-the-new-imperative/",
+        "slug": "rethinking-security-in-semiconductor-testing-why-containment-is-the-new-imperati",
+        "text": "Top Story"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/test-challenges-grow-for-drams-and-hbm/",
+        "slug": "test-challenges-grow-for-drams-and-hbm-qa-with-jin-yokoyama",
+        "text": "Spotlight on Business"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/advantest-unveils-siconic-test-engineering-unified-scalable-bench-environment-for-debug-and-validation/",
+        "slug": "advantest-unveils-siconic-test-engineering-unified-scalable-bench-environment-fo",
+        "text": "Featured Product"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/advantests-voice-2025-draws-record-attendance-in-austin-texas/",
+        "slug": "advantests-voice-2025-draws-record-attendance-in-austin-texas",
+        "text": "Featured Event"
+      },
+      {
+        "url": "https://www.gosemiandbeyond.com/esg-spotlight-september-2025/",
+        "slug": "esg-spotlight-september-2025",
+        "text": "ESG Spotlight"
+      }
+    ]
+  },
+  {
     "title": "March 2024",
     "month": "March",
     "year": "2024",
