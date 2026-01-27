@@ -1,0 +1,41 @@
+---
+title: "Interview with Keith Schaub on the Challenges of Testing Today’s Complex Chips"
+slug: interview-with-keith-schaub-on-the-challenges-of-testing-todays-complex-chips
+date: 
+category: "Q&A"
+author: ""
+excerpt: "Posted  in Q&A"
+original_url: "https://www.gosemiandbeyond.com/interview-with-keith-schaub-on-the-challenges-of-testing-todays-complex-chips/"
+---
+
+Posted  in [Q&A](https://www.gosemiandbeyond.com/category/qa/)
+
+# Interview with Keith Schaub on the Challenges of Testing Today’s Complex Chips
+
+*This Q&A is adapted from an article posted to the *[Semiecosystem](https://marklapedus.substack.com/)* blog by Mark LaPedus. It details a conversation with Keith Schaub, vice president of technology and strategy, regarding the test challenges for today’s complex AI chips, gate-all-around transistors, chiplets, and 3D NAND. The original article can be found *[here](https://marklapedus.substack.com/p/test-challenges-grow-for-2nm-ai-chips)*.*
+
+**Q: How has semiconductor test changed over the years?**
+
+A: IC test has undergone significant changes over the years, evolving alongside the increasing complexity of semiconductor devices. Initially, testing focused on basic functionality, but as devices grew more intricate, the need for more advanced testing methods emerged. The ATE industry responded by developing new, more capable testers to handle higher pin counts, faster speeds, and greater integration. There was also a shift from purely functional testing to structural testing, which provides deeper insights into the integrity of the chip’s design and manufacturing process. In recent years, system-level testing (SLT) has become increasingly important, enabling verification of complete systems and ensuring interoperability of components. Modern IC tests now include sophisticated techniques such as built-in self-test (BIST) and scan testing, enabling more thorough verification. Additionally, the rise of system-on-chip (SoC) and other advanced technologies has driven the development of testers that can handle multiple functions simultaneously. This IC testing evolution reflects the semiconductor industry’s continual pursuit of higher quality, performance, reliability, and efficiency.
+
+**Q: What challenges do you encounter when testing AI devices? **
+
+A: Testing AI chips and accelerators presents several significant challenges due to their complexity and scale. These devices often feature large die sizes, billions of transistors, and dozens to hundreds of cores running at different speeds, depending on workloads. This variability increases the importance of advanced thermal management and control. Ensuring performance and reliability in such dense circuitry requires highly sophisticated ATE capable of handling high-speed interfaces and extreme thermal performance. Hotspots are a critical concern; not only understanding where they occur but being able to predict when they’ll occur during testing is vital for effective thermal control. Comprehensive validation is needed to ensure these chips perform optimally under diverse conditions, particularly in managing power densities and minimizing thermal hotspots. The integration of AI processors with other system components necessitates thorough SLT to verify overall system functionality and interoperability. Additionally, the rapid evolution of AI technology means testing methodologies must continually adapt to keep pace with new architectures and innovations. Overall, these challenges underscore the need for cutting-edge testing solutions to ensure the reliability and performance of AI semiconductor devices.
+
+**Q: Tell us more about system-level test. When do you use it in the test flow?**
+
+A: SLT is a comprehensive testing methodology used to validate the functionality, performance, and interoperability of semiconductor devices within their intended system environments. Unlike traditional testing methods that focus on individual components, SLT evaluates the entire system, ensuring that all integrated parts work seamlessly together under real-world conditions. 
+
+Over the years, SLT has evolved from being an optional insertion to a mandatory step in the test flow, particularly for complex devices such as AI chips, processors, and SoC solutions, where multiple functionalities and high integration levels are involved. SLT is typically used in the latter stages of the test flow after initial component-level tests have been performed. It follows traditional tests like wafer sort, package test, and burn-in, providing an additional layer of assurance by verifying the complete system’s behavior. For example, in the case of an AI processor, SLT would involve running actual AI workloads and applications to ensure the chip performs correctly within the end-user system. This helps identify any issues related to power management, thermal behavior, and interactions with other system components that might not be detected during earlier test stages.
+
+**Q: What new challenges does the transition to gate-all-around (GAA) transistors present?**
+
+A: The transition to gate-all-around (GAA) transistors at the 3nm and 2nm logic nodes presents several new challenges for testing. GAA transistors offer improved performance and power efficiency compared to finFETs, but their unique structure and increased density introduce complexities in test processes. One of the primary challenges is ensuring accurate characterization and validation of these advanced transistors, as their electrical properties can be more sensitive to variations in manufacturing processes. Moreover, the increased device density at these nodes requires more sophisticated ATE with higher resolution and precision. Thermal management becomes even more critical due to the higher power densities, necessitating advanced thermal testing techniques to identify and mitigate hotspots. The integration of GAA transistors also demands enhanced DFT and BIST strategies to ensure comprehensive coverage and efficient testing processes. The rapid evolution of these technologies requires continuous updates to test methodologies to keep pace with the latest advancements in GAA transistor design and fabrication. Overall, while GAA transistors at 2nm and beyond promise significant performance benefits, they also necessitate advanced and adaptive testing solutions to address the new challenges they bring.
+
+**Q: What are some of the test challenges and ATE solutions for chiplets?**
+
+A: Chiplets are generating significant attention in the semiconductor industry due to their potential to enhance performance and flexibility in chip design. However, they introduce several unique test challenges, such as ensuring seamless integration and communication between multiple chiplets within a single package, requiring rigorous testing of interconnects and interfaces. Ensuring known good die (KGD) is critical, as a single defective chiplet can render the entire package unusable, leading to high costs. To address this, shift-left strategies are increasingly important, involving early and comprehensive testing during the design and pre-assembly phases, leveraging AI techniques to enhance test coverage and predict potential failures. The heterogeneous nature of chiplets necessitates highly adaptable ATE capable of handling diverse test requirements. Additionally, SLT is crucial to verify the functionality and interoperability of the combined chiplets under real-world conditions. Thermal management and power delivery are critical, as multiple chiplets within a confined space can lead to hotspots and power distribution issues. Advanced thermal testing techniques and power analysis are required to identify and mitigate these problems.
+
+ATE solutions are evolving to provide higher channel counts, greater flexibility, and improved precision. DFT features, such as BIST and boundary-scan, are increasingly integrated into chiplets to facilitate efficient testing. Overall, while chiplets offer exciting possibilities for innovation, their successful implementation hinges on advanced and flexible ATE solutions, ensuring KGD and employing shift-left strategies enhanced by AI.
+
+  end .post_content

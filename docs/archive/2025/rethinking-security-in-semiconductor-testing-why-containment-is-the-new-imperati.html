@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Rethinking Security in Semiconductor Testing: Why Containment Is the New Imperative - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="header-logo-link">
+                    <img src="images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="current-issue.html">Current Issue</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Rethinking Security in Semiconductor Testing: Why Containment Is the New Imperative</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">2025</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>This article is adapted with permission from a recent Advantest blog post.</em></p>
+<p><em>By Arik Peltz, Director, Technical Product Marketing, Advantest Cloud Solutions (ACS)</em></p>
+<p>It’s nearly impossible to keep up with the headlines without stumbling upon another major cybersecurity incident. According to recent reports, 2024 witnessed a staggering 5.5 billion breaches globally. In the United States alone, the average cost of a single data breach clocked in at $9.36 million—slightly lower than 2023’s figure, but still a significant hit for any organization. On a global scale, the average breach cost was $4.88 million, reinforcing that the threat landscape is both vast and expensive.</p>
+<p><strong>Perimeter defenses are no longer enough</strong></p>
+<p>Traditionally, cybersecurity in semiconductor manufacturing and test environments has centered around perimeter defense—blocking threats before they enter. These measures include timely software updates, closing unused network ports, deploying firewalls, running IDS/IPS tools, and enforcing strict password protocols. While foundational, these practices fall short in the face of today’s diverse and evolving threats.</p>
+<p>Why? Because the scope of potential vulnerabilities continues to grow. It’s not just about outdated software anymore. Misconfigured devices, overlooked network components, and even human error—like someone plugging in an unknown USB drive—can expose a facility. It’s clear: breaches are no longer rare events. They are inevitable. The challenge now lies in what happens <em>after</em> a breach occurs.</p>
+<p><strong>The semiconductor test floor: complex and exposed</strong></p>
+<p>A semiconductor test facility is far more intricate than it might appear. The test cell may be the focal point, but it operates within a larger network of systems—ranging from HVAC units and network switches to printers and third-party software tools. These are all potential gateways for exploitation.</p>
+<p>Further complicating matters is the need for seamless cloud connectivity. Many test operations rely on real-time data sharing with external stakeholders for performance analytics and optimization. That constant network exposure, while essential for business operations, makes the environment even more susceptible to attacks.</p>
+<p><strong>The evolving nature of cyber threats</strong></p>
+<p>Today’s cyberattacks are smarter, stealthier, and increasingly driven by artificial intelligence (AI). Many use social engineering to build trust and then employ malware that mimics normal system behavior. These “slow burn” attacks can run undetected for extended periods, slowly extracting data or altering system operations. Conventional security systems often can’t spot these subtle anomalies in time.</p>
+<p>The rise in customer-facing data sharing exacerbates this issue. As test facilities transmit more data to clients, they inadvertently widen their attack surface. Without a robust containment strategy, these vulnerabilities can become entry points for more sophisticated breaches.</p>
+<p><strong>Introducing a containment-first approach: True Zero Trust™</strong></p>
+<p>To address these challenges, Advantest advocates for a containment-first strategy, embodied in its <strong>True Zero Trust™ Environment</strong>. This model borrows its philosophy from high-risk environments like the International Space Station, where systems are designed to automatically isolate compromised sections to prevent broader damage.</p>
+<p>Here’s how it works:</p>
+<ul>
+<li>Automated containment gates on the test floor that activate in response to suspicious activity</li>
+<li>Built-in assumption that threats can move both upward and downward across the facility</li>
+<li>Shared accountability between OSATs and fabless companies for maintaining a secure test floor</li>
+<li>Full traffic visibility via packet inspection and detailed logging</li>
+<li>Encrypted communications between equipment and central containment servers</li>
+<li>Verification of third-party software through mandatory software bills of materials (SBOMs)</li>
+</ul>
+<p>This model doesn’t just focus on keeping threats out—it plans for when, not if, they get in. Every node, transaction, and data packet is treated as untrusted until proven otherwise.</p>
+<p><strong>The power of ACS RTDI™</strong></p>
+<p>At the heart of Advantest’s containment strategy is the <strong>ACS Real-Time Data Infrastructure (ACS RTDI™)</strong>. This platform provides the foundation for building a secure, flexible, and data-rich test environment.</p>
+<p>ACS RTDI™ includes:</p>
+<ul>
+<li>A communication backplane spanning the entire test floor</li>
+<li>Edge computing nodes that allow local processing and reduce data exposure</li>
+<li>Advantest Unified Server for orchestration and policy enforcement</li>
+<li>A containerized application hub that supports isolated, scalable software deployment</li>
+</ul>
+<p>ACS RTDI™ not only facilitates secure operations but also unlocks advanced capabilities such as adaptive test, data feedforward and backward, outlier detection, and AI-driven predictive modeling. It’s security and innovation, rolled into one powerful solution. </p>
+<p><strong>Looking Ahead: Secure Innovation as a Competitive Edge</strong></p>
+<p>The future of semiconductor testing is moving toward intelligent, semi-autonomous systems powered by AI. These applications demand real-time responsiveness and uninterrupted data flow—both of which are incompatible with outdated security models.</p>
+<p>Containment isn’t just a cybersecurity necessity—it’s a foundation for innovation. Through the True Zero Trust™ framework and ACS RTDI™, organizations can safeguard their intellectual property while enabling breakthrough performance enhancements.</p>
+<p>To further support this vision, Advantest offers the <strong>ACS Solution Store</strong>—a digital marketplace featuring software modules tailored to AI/ML, big data analytics, and secure test operations. These tools are designed to be customizable, scalable, and ready to meet the evolving demands of the semiconductor industry.<img alt="" src="images/archive/rethinking-security-in-semiconductor-testing-why-containment-is-the-new-imperati-1.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/rethinking-security-in-semiconductor-testing-why-containment-is-the-new-imperative/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Current Issue</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

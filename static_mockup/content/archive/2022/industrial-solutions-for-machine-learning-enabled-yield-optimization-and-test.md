@@ -1,0 +1,86 @@
+---
+title: "Industrial Solutions for Machine-Learning-Enabled Yield Optimization and Test"
+slug: industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test
+date: 
+category: "Top Stories"
+author: ""
+excerpt: "Posted  in Top Stories"
+original_url: "https://www.gosemiandbeyond.com/industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test/"
+---
+
+Posted  in [Top Stories](https://www.gosemiandbeyond.com/category/topstories/)
+
+# Industrial Solutions for Machine-Learning-Enabled Yield Optimization and Test
+
+*This article summarizes the content of a paper developed and presented by Advantest at ETS 2022.*
+
+*By Sonny Banwari, Vice President, Advantest Cloud Solutions, and Matthias Sauer, Applied Research Project Manager, Advantest Europe*
+
+According to market research firm Gartner, Inc., in assessing the completion rate of data science projects, as well as the bottom-line value they generate for their companies, only between 15 and 20 percent of these projects are ever completed. Moreover, of those that do manage to reach completion, less than 10 percent of them generate value, according to feedback provided by corporate CEOs. The bottom line: less than 2 percent of data science projects ever get completed AND deliver value. How can this squandering of corporate investment and effort be alleviated? One way is through the use of advanced machine learning (ML) techniques.
+
+However, implementing ML in online manufacturing test poses its own set of challenges. ML-based applications challenge traditional test flows and infrastructures, as they require:
+
+- Large amounts of data, often through multiple insertions spread geographically across multiple continents and located at various corporate entities depending on the position in the value chain;
+- A secure, scalable and integrated compute infrastructure based on open standards; and
+- A dynamic test execution infrastructure.
+
+Some of these properties actually conflict with traditional test setups, which results in non-standard test flows and creates extra work that impacts time to market and return on investment – and, notably, slows success and adoption of ML applications.
+
+Repeatability and reproducibility are essential to test procedures, particularly for automotive and other markets that rely on standardization and a high degree of compatibility. This requires establishing more structured thinking around ML and its impact on test. Figure 1 illustrates an industry-ready ML lifecycle designed to bring data science to the test floor.
+
+* Figure 1. The four key steps of an ACS-powered machine-learning lifecycle are shown here.*
+
+**ACS enables the ML ecosystem**
+
+Advantest Cloud Solutions (ACS) is a highly secure scalable data platform enabling an open solution ecosystem that helps customers address the most pressing challenges of the Smart Manufacturing era. The open aspect of the ecosystem is essential, as it allows any company along the supply chain not only to use it but to add value, create partnerships, deploy their own solutions, etc. ACS provides the vital infrastructure piece, as well as a wide range of development offerings through the ACS Solution Store, while Advantest provides other software products and services that customers can purchase when they need supplemental services to augment or enhance their existing deployments. Let’s take a brief look at each of the four key steps of the ML lifecycle.
+
+**Problem exploration and understanding**
+
+The earlier users seek to identify problems in the manufacturing process, the more data they require. Early bad-die detection is a vital component of this effort, as predicting likely failures post-packaging can help to significantly reduce costs and improve quality in the packaging process. To achieve this requires large amounts of high-quality data. Figure 2 shows the traditional test flow without benefit of ML techniques at left. At right, our ACS technology assesses data gathered from prior insertions and correlates it to accurately predict problems, enabling the user to circumvent them by fixing problems at the root cause, thus preventing bad die from reaching downstream test insertions. This reduces not just the cost of test but also the cost of the materials and processing needed as chips travel through the three-month long manufacturing process across continents and companies.
+
+*Figure 2. Using Advantest ACS techniques, customers can omit bad die early in the test cycle to reduce packaging costs and improve quality.*
+
+**Model engineering**
+
+Model engineering is a crucial step for implementing assessed business requirements and turning them into a data-driven ML application, either using a custom implementation or employing pre-defined solution from the ACS Solution Store.
+
+To evaluate the “ACS Yield Optimization” Reference App described above, we compiled a real-world dataset containing more than 200 relevant rest results per die from probe test and multiple fail bins from final test.
+
+Running ACS-driven data analytics on the compiled, de-duped data, using one device under test (DUT) ID per entry, the tool uses deep learning-based variable selection to determine the variables of greatest influence on yield. It then creates new probe test limits based on the distribution of this data, removing false passes and confirming yield improvement. In the aforementioned case, the result was a 5% improvement in yield, from 88% to 93%, which translated to six-digit savings per year in U.S. dollars.
+
+*Figure 3. ACS Yield Optimization uses deep learning to analyze and optimize variable, resulting in higher yields and significant cost savings.*
+
+**Deployment and execution**
+
+This refers specifically to secure, high-performance test floor integration of ACS with traceable deployments, as noted in Figure 1. Advantest purposely designed our ACS suite of tools not only for optimal results, but also for ease of use. Figure 4 shows our ACS Edge™ core product, which includes the ACS Edge Server and ACS Container Hub.
+
+ACS Edge is a high-performance, highly secure edge compute and analytics solution that enables ultra-fast algorithmic AI decision-making with millisecond latencies during test execution. It connects to the user’s test equipment via a private, high-speed encrypted link and uses the advanced container hub to run the user’s protected applications while protecting and keeping secure the user’s data and analytics.
+
+*Figure 4. Advantest ACS Edge and available extensions help customers easily and securely integrate ACS into their test flow, enabling them to realize the full benefits of its ML-enabled capabilities.*
+
+**Monitoring and validation**
+
+For models to move from the lab to volume production, they must be monitored for any unexpected behaviors resulting from changes in the product design or the test environment. The effectiveness of an optimization must be validated using real-world scenarios in order for a data science project to reach completion and contribute to a company’s overall value.
+
+Semiconductor production is highly influenced by process variations from die to die, wafer to wafer, or lot to lot, particularly at smaller process nodes with tighter geometries that afford less room for deviation. Thus, there is an inherent risk of “silent” model degradation of when a learned process characteristic changes, potentially impacting the quality of the model (yield, test time, device quality, test escapes, etc.) ACS employs a continuous learning loop with continuous monitoring, greatly reducing this risk so that models retain their integrity.
+
+**ACS Solution Store **
+
+Another key piece of the ACS ecosystem that helps create a unified, repeatable workflow is our ACS Solution Store, which provides ease of access to ACS real-time data infrastructure solutions and software applications. This online platform enables customers to discover, purchase and securely deploy all available ACS solutions from Advantest and a broad spectrum of analytics ecosystem partners across the semiconductor lifecycle process. In addition, the ACS Solution Store enables application developers from these partner firms to publish, promote, distribute and manage their Advantest-certified apps.
+
+This latest aspect of the ACS offerings is vital to maintain an open ecosystem, as it facilitates access to all ACS offerings for customers, as well as giving them and our partners the ability to develop and publish their own apps. This allows sharing of new capabilities and best practices so that the capabilities of our ACS technologies can be optimally leveraged across companies throughout the semiconductor ecosystem.
+
+We continue to expand and evolve our Advantest Cloud Solutions to meet evolving customer demands. By putting ACS in place within their test environments, customers can ensure they’re armed and ready for the future of semiconductor test. 
+
+  end .post_content
+
+![](../images/industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test-1.png)
+
+
+![](../images/industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test-2.png)
+
+
+![](../images/industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test-3.png)
+
+
+![](../images/industrial-solutions-for-machine-learning-enabled-yield-optimization-and-test-4.png)

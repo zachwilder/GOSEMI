@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Scalable Platform Key to Controlling SSD Test Costs - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="header-logo-link">
+                    <img src="images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="current-issue.html">Current Issue</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Scalable Platform Key to Controlling SSD Test Costs</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">2017</span></div>
+        </div>
+        <div class="article-body">
+            <p><strong>By Ben Rogel-Favila, Senior Director, System-Level Test, Advantest America</strong></p>
+<p>Manufacturers of solid-state drives (SSDs) want to keep test costs under control even as device performance, density, and variety all increase. In addition, the SSD product life cycle is accelerating. Test equipment manufacturers must strike a reasonable balance here.  They must provide more capable but less expensive systems that can cover a wider variety of devices.  One approach is to make the test system modular and scalable, so companies can buy what they need now and add on later as they need more features and more capabilities.  Another approach is to define more parameters and device characteristics in software rather than in hardware, providing more flexibility and allowing upgrades and changes to be made locally without buying an entire new system.  Additionally, the value-add of test equipment is moving beyond traditional “test electronics.” SSDs present a variety of unique test challenges, all of which an SSD test platform must address while keeping test costs in line.</p>
+<p><strong>How test affects time to market</strong></p>
+<p>Time to market (TTM) is a critical metric in terms of new product success. Manufacturers must hit the market window as early as possible – later entry means realizing less profit. This concept is well understood. So, what role does test play? In the SSD space, a reliability demonstration test (RDT) must be performed to qualify the product. If this step isn’t done correctly, it can affect TTM. To ensure that device testing doesn’t hinder TTM entry, manufacturers must recognize that their device will have some issues – the sooner they’re identified, the greater the chances of achieving optimal TTM.</p>
+<p>Several factors can help mitigate these risks. First, it’s essential to employ a thorough set of engineering tools that can help pinpoint more quickly and accurately where any problems lie. Also required is the support of the tester provider. Test products are highly complex, comprising hardware, software and firmware all interacting with one another, so having someone competent in these environments actively supporting efforts to find these problems is key.</p>
+<p>Next is test development – a significant undertaking that requires a robust environment able to accommodate the different test stages that a device undergoes during its lifecycle. If all the same tools can be applied at each stage, testing becomes easier and much more efficient. Finally, being able to reuse the test throughout all the various test cycles also saves time, as well as helping minimize the introduction of new test conditions from engineering through production. The bottom line is that test can substantially impact TTM, and if not done correctly, this impact can be negative.</p>
+<p><strong>SSD test stages and requirements</strong></p>
+<p>An SSD is put through a range of different tests during its lifecycle, each of which has different objectives and different needs. The SSD test lifecycle involves two distinct test stages. The first stage is focused on engineering/R&amp;D, the second on manufacturing (see Figure 1). In stage 1, once the developer has confirmed the product design is correct, he or she must very that the design architecture lends itself to a reliable product. Once these steps are completed and the RDT conducted, the design is ready to move into stage 2, high-volume manufacturing (HVM). Following assembly, two tests are typically employed: built-in self-test (BIST) and full-speed (or, at-speed) functional test. Being able to utilize a single test solution throughout these stages helps ensure both test process consistency and quality of results.</p>
+<p>Figure 1. SSD lifecycle test stages</p>
+<p>Figure 2. SSD test requirements include a wide range of variables.</p>
+<p>The test requirements for SSDs comprise a wide range of variables that span many different engineering disciplines, as shown in Figure 2:</p>
+<ul>
+<li>Different protocols – As we have examined in prior articles, SSDs make use of several different protocols, e.g., Non-Volatile Memory Express (NVMe), PCI Express (PCIe), Serial Attached SCSI (SAS) and Serial ATA (SATA), which vary significantly in functionality.</li>
+<li>Different form factors – Testing chips is essentially the same process, regardless of IC shape or sizes. With SSD, form factors range from heavy, 8-inch PCIe cards to small, gumstick-sized M.2 devices, which are very fragile; the same system must be able to test each type of SSD.</li>
+<li>Different test methods – As mentioned above, a robust system is needed to perform both BIST and functional testing.</li>
+<li>Different speeds – This is a key requirement. System complexity and cost rise exponentially with increased device speed. With SSDs, speeds currently range from 1.5 Gigabits/second (Gbps) to 12 Gbps, with 16 Gbps (for PCIe Gen 4) and 22.5Gbps (for SAS 24) on the horizon.</li>
+<li>Enterprise vs. consumer – This distinction is important because, at least intuitively, we can assume enterprise has a bigger budget for test given that the price tag for enterprise-level SSDs is about 50x that for consumer-level products.</li>
+<li>Manual vs. automated – All SSD devices are being tested manually today, but as volumes increase, three things are happening: a) demand is growing at a rate that makes continually adding operators not economically feasible; b) operator error is growing in parallel with the number of operators; c) operator turnover is on the rise, creating a significant problem for manufacturers and pointing up the need to use robots on the line.</li>
+<li>Different temperatures – Testing a device at ambient temperature is very different from testing it at -10°C. The automotive market is a prime example of this challenge – there has been a huge increase in electronic content, and test temperatures can range from -45°C to +125°C or more in order to ensure vehicle electronics can handle a wide range of climates.</li>
+</ul>
+<p>ALL of these requirements have to be addressed – the question is, how? An all-inclusive test cell, a “Rolls Royce” approach, could be developed to do everything needed, but would be extremely costly, and customers would invariably pay for features they didn’t need. At the other end of the spectrum is an application-specific test cell, which is less costly, but also less flexible. Because this type of solution can only do one particular type of test, if an application changes, a new tester would have to be purchased.</p>
+<p>Can one SSD test system accommodate all TTM needs, handle both engineering and manufacturing environments, address the wide range of test requirements, and grow with a customer as their test needs evolve?</p>
+<p>An SSD test platform is the answer. Comprising a family of components that can be easily mixed and matched to create new products quickly, such a system allows customers to meet their needs exactly, with no scrimping and no waste. Tomorrow, if a faster module is needed to test PCI Gen 4, the customer only has to purchase that module – the rest of system (thermal, power supplies, and other constants) can be reused, which equates to 70-80 percent of the components. By only paying for what they need, customers can extend the life of the platform over 10-15 years or more.</p>
+<p><strong>Scalable, flexible, affordable test solution</strong></p>
+<p>Advantest’s offering in this space is its modular MPT3000HVM test platform. Figure 3 illustrates how easily the system can be reconfigured to accommodate a new mix of products with different protocols.</p>
+<p>Figure 3. As shown above, a shift in protocol mix for the SSD devices to be tested can be completed in minutes with the SSD test platform approach.</p>
+<p>The base unit for the MPT3000HVM, called the primitive, is the secret to the platform’s success. The user starts with this unit, and then adds in components as needed to accommodate specific test demands, e.g., full protocol test or different types of test electronics. The personality of the primitive changes according to what it incorporates. If, for instance, an engineer is using a tester full of primitives doing full functional and needs to switch to BIST, he or she can reconfigure the primitive and continue to use it, simply by changing the modules.</p>
+<p>Similarly, different form factors can be easily accommodated. Figure 4 shows several racks of MPT3000HVM primitives running tests on different device sizes. Just by changing the device interface board, any type of SSD, or even chips, can be tested in parallel. Different primitives in same system – can test all at same time, w/different protocols, form factors, test electronics – all flexibility needed. System then becomes accumulation of primitive in 19-inch rack.</p>
+<p>Figure 4. Multiple MPT300HVM primitives, each testing a different type of SSD, can be run in parallel within the same rack.</p>
+<p><strong>Unique capabilities</strong></p>
+<p>One crucial characteristic of the platform is its powerful, easy-to-use software, which can be easily applied to the different test stages. It employs a universal GUI, so the user always sees the same interface whether working on device verification, RDT or HVM. Whether different protocols, form factors, or types of tests are involved, it’s the same software, so engineers need to be trained only once. Because of the software’s capabilities, the same set of tools can be used across all test stages, which eliminates the problem of different people not being able to access different aspects of the software and this being unable to reproduce issues. Tools in the suite include stylus main, datalog &amp; test flow control; graph characterization; power profile; production operator interface; oven control; and calibration &amp; diagnostics.</p>
+<p>ATE is traditionally focused on fault detection – i.e., the chip is tested and, in general, the result is pass or fail. Testing beyond this level is unnecessary with chip test because if the chip doesn’t pass, it’s not repairable, so it’s discarded. With SSD, we are learning that pass/fail testing is not enough because they can be repaired. Customers are now expecting not only fault detection but also fault location – they need to know the root cause of the failure, and need tools to help them do this. Advantest is developing these tools, which no other test provider currently offers, to enable a wide range of fault location capabilities, incorporating FPGA technology to detect deviations as they happen.</p>
+<p><strong>Summary</strong></p>
+<p>The SSD industry requires a test platform that optimally addresses shortening time to market, ever-decreasing SSD product lifecycles, and the need to keep test costs under control even as device performance, density and variety all increase. Advantest’s proven MPT300HVM was created to resolve all these challenges, delivering a flexible, scalable platform that can handle testing a wide range of device types, speeds, form factors and other variables simply through swapping out modules to create a configuration that meets the user’s needs.</p>
+<p>This also includes handling a variety of protocols. SATA still has high usage for low-end consumer SSD devices, but the world is moving to PCIe, both standalone and as a transport mechanism for NVMe. PCIe Gen 4 is coming soon, as is SAS 24, and the Advantest solution can handle them all, leveraging the company’s long tradition of creating platforms in a system-level offering.<img alt="" src="images/archive/scalable-platform-key-to-controlling-ssd-test-costs-1.png" /></p>
+<p><img alt="" src="images/archive/scalable-platform-key-to-controlling-ssd-test-costs-2.png" /></p>
+<p><img alt="" src="images/archive/scalable-platform-key-to-controlling-ssd-test-costs-3.png" /></p>
+<p><img alt="" src="images/archive/scalable-platform-key-to-controlling-ssd-test-costs-4.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/scalable-platform-key-to-controlling-ssd-test-costs/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Current Issue</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -201,6 +201,187 @@ def process_page_with_layout(page_content, layouts, partials):
     return result
 
 
+def process_archive_content(layouts, partials):
+    """Process archived article content from content/archive/ directory."""
+    archive_dir = CONTENT_DIR / 'archive'
+    if not archive_dir.exists():
+        return 0
+
+    processed = 0
+    archive_data = {}  # year -> list of articles
+    print("\nProcessing archive content:")
+
+    # Copy archive images to output
+    archive_images_src = archive_dir / 'images'
+    if archive_images_src.exists():
+        archive_images_dest = OUTPUT_DIR / 'images' / 'archive'
+        if archive_images_dest.exists():
+            shutil.rmtree(archive_images_dest)
+        shutil.copytree(archive_images_src, archive_images_dest)
+        image_count = len(list(archive_images_src.iterdir()))
+        print(f"  Copied {image_count} archive images")
+
+    # Process each year directory
+    for year_dir in sorted(archive_dir.iterdir()):
+        if not year_dir.is_dir() or year_dir.name == 'images':
+            continue
+
+        year = year_dir.name
+        archive_data[year] = []
+        year_output_dir = OUTPUT_DIR / 'archive' / year
+        year_output_dir.mkdir(parents=True, exist_ok=True)
+
+        for article_file in year_dir.glob('*.md'):
+            content = article_file.read_text(encoding='utf-8')
+            metadata, md_content = parse_front_matter(content)
+
+            # Get article slug from metadata or filename
+            article_slug = metadata.get('slug', article_file.stem)
+
+            # Clean up the content - remove "Posted in" lines and "end .post_content"
+            md_content = re.sub(r'Posted\s+in\s+\[.*?\]\(.*?\)\s*\n*', '', md_content)
+            md_content = re.sub(r'\s*end \.post_content\s*', '', md_content)
+            # Remove duplicate h1 title (already in header)
+            title = metadata.get('title', article_slug.replace('-', ' ').title())
+            md_content = re.sub(rf'^#\s*{re.escape(title)}\s*\n*', '', md_content, flags=re.MULTILINE)
+
+            # Convert markdown to HTML
+            base_image_path = 'images/archive/'
+            html_content = convert_markdown_to_html(md_content, base_image_path)
+
+            # Get metadata values
+            category = metadata.get('category', 'Article')
+            author = metadata.get('author', '')
+            date = metadata.get('date', '')
+            excerpt = metadata.get('excerpt', '')
+            original_url = metadata.get('original_url', '')
+
+            # Store article data for index page
+            archive_data[year].append({
+                'title': title,
+                'slug': article_slug,
+                'category': category,
+                'date': date,
+                'excerpt': excerpt,
+                'year': year
+            })
+
+            # Build article header with metadata
+            header_html = f'<h1>{title}</h1>'
+            header_html += '<div class="article-meta">'
+            meta_parts = []
+            if category:
+                meta_parts.append(f'<span class="article-label">{category}</span>')
+            meta_parts.append(f'<span class="article-date">{year}</span>')
+            if author:
+                meta_parts.append(f'<span class="article-author">By {author}</span>')
+            header_html += ' &bull; '.join(meta_parts)
+            header_html += '</div>'
+
+            # Get layout
+            layout = layouts.get('base')
+
+            # Create full page
+            page_html = layout.replace('{{title}}', f'{title} - Go Semi & Beyond Archive')
+            page_html = page_html.replace('{{body_class}}', '')
+            page_html = page_html.replace('{{content}}', f'''
+    <article class="article-page archive-article">
+        <div class="article-header">
+            {header_html}
+        </div>
+        <div class="article-body">
+            {html_content}
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            {f'<a href="{original_url}" class="btn-outline" target="_blank">View Original</a>' if original_url else ''}
+        </footer>
+    </article>
+''')
+            page_html = process_template(page_html, partials)
+
+            # Write output
+            output_file = year_output_dir / f'{article_slug}.html'
+            output_file.write_text(page_html, encoding='utf-8')
+            processed += 1
+
+        print(f"  {year}: {len(archive_data[year])} articles")
+
+    # Generate archive index data file (for use by archive page)
+    archive_index_path = OUTPUT_DIR / 'archive' / 'index.json'
+    import json
+    with open(archive_index_path, 'w', encoding='utf-8') as f:
+        json.dump(archive_data, f, indent=2)
+    print(f"  Generated archive index: archive/index.json")
+
+    # Generate static archive index HTML
+    generate_archive_index_page(archive_data, layouts, partials)
+
+    return processed
+
+
+def generate_archive_index_page(archive_data, layouts, partials):
+    """Generate a static archive index page listing all articles by year."""
+    # Build the archive content HTML
+    archive_html = '''
+    <div class="archive-page">
+        <header class="archive-header">
+            <h1>Article Archive</h1>
+            <p>Browse our complete archive of semiconductor industry articles, insights, and technical content.</p>
+        </header>
+        <div class="archive-content">
+'''
+
+    # Sort years descending (newest first)
+    for year in sorted(archive_data.keys(), reverse=True):
+        articles = archive_data[year]
+        archive_html += f'''
+        <section class="archive-year">
+            <h2>{year}</h2>
+            <div class="archive-articles">
+'''
+        # Sort articles by title
+        for article in sorted(articles, key=lambda x: x['title']):
+            category_badge = f'<span class="article-label">{article["category"]}</span>' if article.get('category') else ''
+            archive_html += f'''
+                <article class="archive-item">
+                    <div class="archive-item-content">
+                        {category_badge}
+                        <h3><a href="archive/{year}/{article['slug']}.html">{article['title']}</a></h3>
+                    </div>
+                </article>
+'''
+        archive_html += '''
+            </div>
+        </section>
+'''
+
+    archive_html += '''
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Stay Informed</h2>
+            <p>Subscribe to Go Semi & Beyond for the latest semiconductor insights.</p>
+            <a href="subscribe.html" class="btn-primary">Subscribe Today</a>
+        </div>
+    </section>
+'''
+
+    # Get layout and build page
+    layout = layouts.get('base')
+    page_html = layout.replace('{{title}}', 'Article Archive - Go Semi & Beyond')
+    page_html = page_html.replace('{{body_class}}', '')
+    page_html = page_html.replace('{{content}}', archive_html)
+    page_html = process_template(page_html, partials)
+
+    # Write output
+    output_file = OUTPUT_DIR / 'archive.html'
+    output_file.write_text(page_html, encoding='utf-8')
+    print(f"  Generated archive index: archive.html")
+
+
 def process_markdown_content(layouts, partials):
     """Process markdown content from content/issues/ directory."""
     if not CONTENT_DIR.exists():
@@ -409,6 +590,10 @@ def build_templates():
     # Process markdown content
     md_processed = process_markdown_content(layouts, partials)
     templates_processed += md_processed
+
+    # Process archive content
+    archive_processed = process_archive_content(layouts, partials)
+    templates_processed += archive_processed
 
     print(f"\nBuild complete! Processed {templates_processed} template(s).")
     print(f"Output directory: {OUTPUT_DIR}")

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Q&A Interview: Moving Test to the Fast Lane - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="header-logo-link">
+                    <img src="images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="current-issue.html">Current Issue</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Q&A Interview: Moving Test to the Fast Lane</h1><div class="article-meta"><span class="article-label">Q&A</span> &bull; <span class="article-date">2020</span></div>
+        </div>
+        <div class="article-body">
+            <p><strong>By: GO SEMI &amp; BEYOND Staff</strong></p>
+<p><em>In this issue, our Q&amp;A interview subject is Steve Pateras, Senior Director of Test Marketing for Synopsys. Steve provides a look at a new test capability, jointly developed by Synopsys and Advantest, that leverages high-speed communication interfaces such as USB and PCIexpress to improve test throughput. (NOTE: This piece was originally intended to serve as a preview of Steve’s VOICE 2020 keynote address; although canceled this year, the conference will return in 2021, as will Steve.)</em></p>
+<p><strong>Q: What was the catalyst for developing this approach?</strong></p>
+<p>A: The industry is always looking for new ways to improve test throughput, in order to reduce test times and costs. As chip designs get larger and larger, you need more test data, so to keep test costs in line, you need to improve bandwidth to get better throughput.</p>
+<p>Moore’s Law kept things growing and increasing in complexity over the past several decades, but periodically, fundamental paradigm shifts needed to happen. The first was in the 1980s, when we moved to structural test because chips had become too complex to cover all possible failure modes using functional verification. Looking only at the I/Os related to flip-flop scan chains, rather than every functional I/O, became the new norm, and this worked well for a couple of decades.</p>
+<p>By 2000, scan alone had become inefficient – the number of scan chains and I/Os to scan kept growing larger and larger, and the sheer volume of data was too massive to store on the tester. This led to the next paradigm shift: compression channel I/O. Data is compressed on the tester, then sent to the chip, where it is decompressed on-the-fly into multiple scan chains. Again, this reduced the number of I/Os and test times to a manageable amount. Another 20 years passed, which brings us to today.</p>
+<p>As chip features shrink down to 14nm, then to 7nm and beyond, we’re still seeing exponential growth in the numbers of patterns and pattern test data. We’ve again reached the point where we can’t accommodate the volume – even compressed, there is too much data to be stored, and it takes too long to scan data in and out. It’s time for a new approach.</p>
+<p><strong>Q: You’re talking about the next paradigm shift?</strong></p>
+<p>A: Exactly. Structural (scan) patterns form the primary test for digital logic – more patterns are required to maintain quality, with larger designs requiring more manufacturing tests, and new process nodes demanding advanced fault tests. At some point, things start to break; how do you achieve the necessary bandwidth when you have limited tester speeds and a limited number of available pins? Figure 1 shows real-time bandwidth limitations – that is, the actual number of gigabits you’d need to test some of the newer, larger devices. Existing approaches can’t accommodate moving from tens to hundreds of gigabits per second, let alone into the terabit range. </p>
+<p><em>Figure 1. As data volumes increase with device complexity, test times rise sharply.</em></p>
+<p>What we’ve been developing with Advantest is the use of high-speed functional I/O (HSIO) to increase bandwidth. Instead of feeding the compression logic onto the chip via dedicated scan I/O, we’re using very high-speed serial functional interfaces, i.e., USB and PCIexpress, to achieve this. Once the data is entered, we can convert it into the parallel data we need to feed the compression logic. We use these very high-speed serial inputs to get the required bandwidth, and then we parallelize this widely to all the many parallel scan chains on the chip. </p>
+<p><strong>Q: How is the parallelism achieved?</strong></p>
+<p>A: Via the on-chip logic that we provide, which works essentially like a transformer. It allows for very large amounts of data coming without the need for dedicated, lower-speed I/Os. We’re essentially reusing the high-speed interfaces that exist on virtually every chip today. Instead of reinventing the wheel and adding more dedicated pins per test, we simply piggyback on top of these interfaces during the test process to send high-speed test data through them [Figure 2].</p>
+<p>Reusing these existing high-bandwidth functional interfaces offers three key benefits: it reduces test time; it eliminates the need for dedicated test I/O; and it provides test portability through the product lifecycle. </p>
+<p><em>Figure 2. Reusing HSIO protocols improves scan bandwidth, significantly lowering test times.</em></p>
+<p><strong>Q: How long has the new solution been in development, and what does it entail?</strong></p>
+<p>A: We’ve been working with Advantest on this new HSIO paradigm for over two years, combining key components from our TestMAX suite of software with Advantest’s V93000 SoC tester. The solution entails three key aspects, summarized in Figure 3:</p>
+<ol>
+<li>Packetizing manufacturing test data to accommodate HSIO protocols. Integrated into the V93000, our software [dark green box] takes traditional parallel data from ATPG tools, converts it into high-speed packet data, then depacketizes the data coming back and maps it to known failure descriptions.</li>
+<li>Enabling the tester to accommodate this approach [light green box]. Testers themselves need to be able to drive data through these high-speed interfaces, so through this joint effort, Advantest has added new hardware onto the V93000 to provide the HSIO function and ensure their SmarTest software can work with it.</li>
+<li>Ensuring the chips can handle this high-speed packet data. We devised a bidirectional HSIO-to-DFT interface controller, which is added to the chip as IP [dark grey box] to actively manage incoming high-speed packet data on one end and receive the parallelized lower-speed test data on the other.</li>
+</ol>
+<p><a href="https://www.gosemiandbeyond.com/wp-content/uploads/2020/12/ATE-PC-or-SLT-2.png"></a></p>
+<p><em>Figure 3. The new HSIO test paradigm integrates key software, hardware and on-chip functionality.</em></p>
+<p>In addition, our Adaptive Learning Engine (ALE) adds more intelligence to the test process. It allows our software to actively look at failure data coming back from the device and adapt the test to deal with the kind of failures that are being seen on the tester, as well as perform more advanced diagnostics. This can be performed locally on individual testers, as well as on a Big Data level – each tester on the floor can send its results to a centralized analytics engine analyzing results and looking for systematic issues across multiple devices over time. In this way, we can help to greatly improve the test process at the test-floor level.</p>
+<p><em>For more details, real-world examples and updates on this new high-speed functional I/O test paradigm, make plans now to attend Steve’s keynote address at </em><a href="https://voice.advantest.com/">VOICE 2021</a><em> in Scottsdale, Ariz</em>.<img alt="" src="images/archive/qa-interview-moving-test-to-the-fast-lane-1.png" /></p>
+<p><img alt="" src="images/archive/qa-interview-moving-test-to-the-fast-lane-2.png" /></p>
+<p><img alt="HSIO Test Paradigm Diagram" src="images/archive/qa-interview-moving-test-to-the-fast-lane-3.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/qa-interview-moving-test-to-the-fast-lane/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Current Issue</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

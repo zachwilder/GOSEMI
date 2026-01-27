@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>T2000 with Multiple Interface Unit Supports RF SiP OTA Test - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="header-logo-link">
+                    <img src="images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="current-issue.html">Current Issue</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>T2000 with Multiple Interface Unit Supports RF SiP OTA Test</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">2021</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>By Koji Miyauchi, T2000 Business Unit Solution Department, Advantest Corp.</em></p>
+<p><strong>Introduction</strong></p>
+<p>In recent years, the proliferation of the IoT has focused attention on low-power-wireless applications. IoT modules incorporating functions such as Bluetooth Low Energy (BLE) transceivers, MCUs, and power-management circuitry are becoming system-in-package (SiP) and even one-chip devices. Such devices increase the demand for a mass-production test environment that can measure them in a short time. To meet this demand, we at Advantest have focused on combining conventional ATE test and system-level test (SLT). Specifically, we have developed a hybrid SLT system that combines ATE test in the form of a T2000 system with SLT implemented using a multiple-interface-unit (MIU) box attached to the T2000. Advantest customers are using such systems today. In this article, we describe the hybrid SLT using a BLE SiP module as an example.</p>
+<p><strong>IoT and low-power wireless</strong></p>
+<p>The IoT represents a rapidly growing market for which high-speed wireless connections suitable for various usage systems are indispensable. The arrival of digital transportation is accelerating this trend. In addition to high speed, low power is crucial for IoT wireless communications, leading to the adoption of low-power wireless standards such as BLE and ZigBee for short-range communication and LoRa and Sigfox for long-range communication (Table 1).</p>
+<p><em>Table 1. Low-Power Wireless Standards and Features</em></p>
+<p>As shown in Figure 1, the ratio of BLE usage is high compared with usage of other communications standards for low-power wireless applications, and the average annual growth rate of BLE is 24.5%. IoT modules that can implement these standards can take various forms, from module-level devices that combine discrete components to SiP and single-chip devices. Due to the increasing demand for higher functionality, power saving, and miniaturization in recent years, IoT module functions increasingly will be integrated into one device. With the current acceleration of the IoT, the ratio of such SiPs and single chips to modules with discrete components is increasing, thereby driving an increasing demand for a production test environment that can quickly measure a large number of highly integrated devices at once . In addition, IoT modules built with SiP devices or single chips enable a wide variety of products optimized for each application.</p>
+<p><em>Figure 1. BLE finds significant use in low-power wireless applications.</em></p>
+<p><strong>Technical challenges for SiP</strong></p>
+<p>An IoT module is a composite device that packages processing, power-supply, wired-communications, and wireless-communications functions. To test such a composite device, the tester must have the conventional capabilities required for testing multiple devices such as an MPU, a transceiver IC, and a PMIC. At the same time, a trend in the semiconductor manufacturing process is emerging that drives an increase in the ratio of SLT to conventional final test. Currently, there is a demand for system upgrades that incorporate the trimming process using conventional ATE, rather than system upgrades that combine actual end-application-level machines such as motherboards with measuring instruments. As shown in Table 2, the SiP presents technical challenges as well as benefits. The increasing demand for SiPs and the technical issues caused by their introduction are the reasons why the ATE environment is required instead of an upgraded SLT system using jigs such as motherboards.</p>
+<p><em>Table 2. SiP Benefits and Technical Challenges for Testing</em></p>
+<p><strong>Asynchronous testing with ATE</strong></p>
+<p>One of two methods can help to solve the technical issues of IoT module SiPs, depending on the production volume:</p>
+<ol>
+<li>A high-productivity measurement environment using multiple simultaneous-measurement SLT systems.</li>
+<li>A hybrid environment that realizes SLT with conventional ATE test.</li>
+</ol>
+<p>Here, we focus on the second: a hybrid environment that realizes SLT with a conventional ATE tester. This method is particularly suitable for high-mix production.</p>
+<p>In conventional device tests, ATE takes the initiative in controlling the DUT to perform tests efficiently. However, SLT provides test in actual application-level use case, in which the application runs on the OS inside the CPU of the DUT.　In this application environment, with processing timing unique to the DUT, test operations are performed in accordance with the internal clock in the DUT’s CPU, so the output timing is uncertain. In other words, asynchronous testing becomes an issue when performing SLT on an ATE system. The testing must be performed mainly by DUT, since ATE is not good at test operations that are out of sync with itself.</p>
+<p>To solve the problems related to asynchronous testing and SiP technical challenges, Advantest has developed hybrid SLT, which is a combination of SLT using an MIU box and ATE test. The MIU box is a unit that performs the SLT of IoT modules using tester resources and a processor that can operate asynchronously (Figure 2). The MIU box is controlled by the T2000 via Ethernet. Asynchronous test is realized while interlocking with the tester OS by letting the MIU execute the test script for SLT using the TSS (T2000 System Software) application software that has been used conventionally in the T2000.</p>
+<p><em>Figure 2. The Hybrid SLT solution combines a T2000 tester and MIU box.</em></p>
+<p><strong>Implementation example of 16 parallel tests by OTA</strong></p>
+<p>Figure 3 shows an example of the testing of 16 BLE-equipped IoT modules using the T2000 MIU solution. Four DUTs can be measured for each MIU board. In addition, the MIU box is equipped with four MIU boards and can measure 16 devices. Moreover, because BLE has 40 channels, simultaneous measurement can be performed while avoiding channel interference. A performance board (PB) or load board with a shield function prevents radio-wave interference with a dedicated socket for OTA and the adjacent tester. Before and after the RF OTA test, digital tests and DC tests using conventional tester resources are performed.</p>
+<p><em>Figure 3. This hybrid SLT example shows the testing of 16 BLE-equipped IoT modules.</em></p>
+<p>The mass-production test steps in hybrid SLT (excluding the conventional chip-test items) are as follows; these tests are conducted asynchronously between the DUTs using OTA:</p>
+<ul>
+<li>Tx power. The DUT uses the received signal-strength indicator (RSSI) function of the RF front end to measure power while continuously transmitting Tx signals with direct test mode (DTM). [Is this correct: DTM stands for “direct test mode”?]</li>
+<li>RSSI. As with the Tx power measurement, the DUT receives the Tx signal from the RF front end with DTM, and the RSSI value is read out with the MIU.</li>
+<li>Packet error rate (PER). This test reads the PER while the DUT and RF front end communicate in the actual usage environment.</li>
+<li>Data transfer. After performing the advertising scan, this step connects the DUT and RF front end, sends and receives data at the application layer, compares the data with the expected value, and makes a judgment.</li>
+</ul>
+<p>A test system can employ three types of OTA test methods—radio wave, electrostatic induction, and electromagnetic induction—depending on the application requirements. For this example, we have adopted electrostatic induction and have developed a socket and antenna board to implement this method. The Figure 4 block diagram shows the connection from the MIU box to the DUT as well as a photo of the MIU box and test head. Figure 5 shows results from the BLE PER test case.</p>
+<p><em>Figure 4. The block diagram (left) shows the DUT-to-MIU box connection, while the photo (right) shows the MIU box and test head.</em></p>
+<p><em>Figure 5. OTA test of the RF front end to DUT connection (left) yields the BLE PER test results Shmoo Plot (right).</em></p>
+<p><strong>Conclusion</strong></p>
+<p>Hybrid SLT is ideal for testing the ever increasing number of IoT modules. Since the traditional SLT communicates in an actual application-level use case, the overhead of test time tends to increase. However, the hybrid SLT can realize the concurrent conventional-ATE test and SLT, thereby shortening the total test time. Hybrid SLT can support wireless communication standards other than BLE, so customers can take advantage of Advantest’s wide range of the SLT solutions.<img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-1.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-2.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-3.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-4.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-5.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-6.png" /></p>
+<p><img alt="" src="images/archive/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test-7.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/t2000-with-multiple-interface-unit-supports-rf-sip-ota-test/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Current Issue</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

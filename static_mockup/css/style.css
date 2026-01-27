@@ -1223,6 +1223,103 @@ footer {
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
 
+/* Archive Page Styles */
+.archive-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.archive-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.archive-header h1 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.archive-header p {
+    color: var(--COLOR_TEXT_SECONDARY);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.archive-year {
+    margin-bottom: 50px;
+}
+
+.archive-year h2 {
+    font-size: 1.75rem;
+    color: var(--primary);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.archive-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+.archive-item {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 15px 20px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.archive-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.archive-item-content .article-label {
+    margin-bottom: 8px;
+}
+
+.archive-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.archive-item h3 a {
+    color: var(--dark);
+}
+
+.archive-item h3 a:hover {
+    color: var(--accent);
+}
+
+/* Archive article page */
+.archive-article .article-footer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.archive-article .article-footer .btn-outline {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.archive-article .article-footer .btn-outline:hover {
+    background-color: var(--accent);
+    color: var(--light);
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .content-grid {
@@ -1270,6 +1367,14 @@ footer {
 
     .archive-grid {
         grid-template-columns: 1fr;
+    }
+
+    .archive-articles {
+        grid-template-columns: 1fr;
+    }
+
+    .archive-header h1 {
+        font-size: 2rem;
     }
 
     nav ul {

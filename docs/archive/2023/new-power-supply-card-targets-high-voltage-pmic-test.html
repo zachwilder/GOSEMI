@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>New Power-Supply Card Targets High-Voltage PMIC Test - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="index.html" class="header-logo-link">
+                    <img src="images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="current-issue.html">Current Issue</a></li>
+                    <li><a href="archive.html">Archive</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>New Power-Supply Card Targets High-Voltage PMIC Test</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">2023</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>By Toni Dirscherl, Business Lead, Power/Analog/Control, Advantest Europe</em></p>
+<p>The electronics industry is seeing a move toward higher voltages and currents to deliver sufficient supply and charging power in products ranging from handheld cellphones and tablets to workstations. This trend is evidenced in examples such as the many USB power-delivery (PD) profiles with ratings ranging from 10W (5V at 2A for USB PD 3.0 profile 1) up to 100W (5V at 2A, 12V at 5A, and 20V at 5A up to the 100W limit for profile 5). In addition to higher power levels, today’s consumer products are exhibiting an increasing number of voltage domains, and they require power-management integrated circuits (PMICs) to manage the various voltage levels required for battery charging and other functionalities. The PMICs, in turn, present test challenges that ATE systems tailored for mostly digital devices cannot address due to missing high-voltage sources.</p>
+<p><strong>Universal VI instrument</strong></p>
+<p>To meet these challenges with a cost-efficient test system, Advantest has added a new card to its Extended Power Supply (XPS) Series for the V93000 EXA Scale™ SoC test platform. The new DC Scale XPS128+HV universal voltage-current (VI) instrument combines a high channel count (128 channels per card) with per-channel voltage and current ranges of up to 24V and up to 1A, creating a test solution that efficiently addresses the test requirements for high-voltage devices such as PMICs. The complete card consists of four 32-channel sub-modules with a test-processor-per-pin architecture (Figure 1).</p>
+<p><em>Figure 1. XPS128+HV assembly (left) and 32-channel sub-module (right).</em></p>
+<p>The XPS128+HV provides full channel compatibility with the low-voltage 256-channel XPS256 card successfully introduced to the market in 2020. The XPS128+HV can cover the same applications in the low-voltage domain as an XPS256, but the XPS128+HV seamlessly extends a system configuration to cover additional high-voltage needs, enabling efficient, highly parallel test of power-management devices with enhanced capability for high-voltage applications.</p>
+<p>Figure 2 shows the operating IV characteristics of both cards. The region outlined in green represents the XPS256, which operates from -2.5V to +7V at currents up to 1A per channel. All three regions represent the XPS128+HV card. In addition to the green area of the XPS256, the XPS128+HV can operate from -10V to +15V at 250mA (dark blue outline) and from -1V to +24V at 150mA (light-blue outline).</p>
+<p><em>Figure 2. XPS128+HV operating regions.</em></p>
+<p>As shown in Figure 3, the XPS128+HV switches seamlessly between the -2.5V to +7V, -1V to +24V, and -10V to +15V ranges.</p>
+<p><em>Figure 3. XPS128+HV seamlessly switching between ranges.</em></p>
+<p><strong>Signal quality and accuracy</strong></p>
+<p>To ensure signal quality and high accuracy, both water-cooled XPS cards include Advantest’s new Xtreme RegulationTM digital control loop, which can flexibly adapt to changing load conditions. Xtreme Regulation also supports programmable voltage and current slew rate and bandwidth settings (Figure 4) to provide an optimum solution for capacitive, resistive, or inductive loads. The programmable slew-rate function avoids excessive currents and noise during voltage ramps, eliminating current spikes during the initial charge of a capacitor and eliminating voltage noise from stray inductance.</p>
+<p><em>Figure 4. Illustration of the XPS128+HV adjustable bandwidth capability on a 24-V channel.</em></p>
+<p>The cards also include arbitrary-waveform-generation (AWG) and digitizer functions with a 2MS/s sample rate and 18-bit resolution for simultaneous voltage and current sampling. The AWG capability enables generation of current ramps on individual or ganged channels to perform threshold searches and other test methodologies.</p>
+<p><strong>Voltage and current modes</strong></p>
+<p>The core of the XPS256 and XPS128+HV is a digitally regulated VI source that can seamlessly change operating modes from a force-voltage mode to a force- or sink-current mode—often a requirement for testing power-management components such as low-dropout (LDO) or DC/DC regulators. For example, the seamless mode changes enable the cards to execute the fast test sequences necessary to perform DC/DC and LDO regulation tests and IDDQ current measurements while minimizing test times. </p>
+<p>In addition, the XPS128+HV provides seamless mode switching with no limitations related to transitioning between its high-voltage and low-voltage ranges. The card’s sequencer-controlled range-change capability allows extremely fast, deterministic test times without signal spikes that could harm a device under test (DUT).</p>
+<p>The XPS card family delivers an extremely high force and measurement accuracy, often required for precise device trimming and for achieving high yields. Voltage accuracy is better than ±150 µV with a 10-µV resolution, while current accuracy is better than ±50 nA with a 100-pA resolution. </p>
+<p><strong>Protective features</strong></p>
+<p>The XPS128+HV and XPS256 both offer several protection features. All channels are protected against external exposure of ±80V. The VI source features a patented fast current-clamp capability to protect load-board components, probe-card needles, and DUT sockets in case of a DUT short circuit, limiting inrush currents within less than 2 µs until the programmed clamp value is applied (shown in Figure 5). </p>
+<p><em>Figure 5. XPS128+HV current-limit response to simulated DUT short circuit.</em></p>
+<p>To further provide probe-needle protection, the XPS cards perform simultaneous current and voltage profiling across the entire test flow to identify critical conditions such as power hot spots that could lead to damage. This background profiling occurs at 2MS/s. In addition, inline Vdrop monitoring measures the contact resistance for each channel to facilitate adaptive needle cleaning and to help schedule preventative maintenance. The profiling and monitoring offer sophisticated oscilloscope-like triggering capabilities (pre-trigger, post-trigger, and center-trigger) and impose zero overhead, uploading only on demand or upon a programmable alarm condition. Profiling can be seamlessly enabled and disabled without test-program modifications.</p>
+<p><strong>Multiple-card systems</strong></p>
+<p>The XPS series and other EXA Scale cards can be mixed and matched in a single test system. In a typical application, a V93000 test head might include PS5000 cards for digital I/O test and basic analog and mixed-signal test, a Wave Scale Mixed-Signal High-Speed (WSMX HS) card for noise evaluation and transient analysis, a utility card to supply and control load-board components, an XPS256 card to test low-voltage DC/DC converters and regulators, and an XPS128+HV card to test the high-voltage functionality of USB PD circuits and rapid chargers and to provide high-voltage screening. Both XPS cards allow flexible ganging of channels within each card and across cards without any impact on regulation performance. Ganging enables a combination of multiple channels to provide the current levels needed to test DC/DC converters that require multiple-ampere load currents.</p>
+<p>Finally, in addition to PMIC testing, the new XPS128+HV can act as a standard power supply for high-performance-computing and automotive test applications. It can also be used for microcontroller (MCU) test, and it can generate high-voltage pulses for MCU flash programming.</p>
+<p><strong>Conclusion</strong></p>
+<p>Chipmakers increasingly need to perform multisite parallel test of PMICs that feature multiple voltage domains, and they require a power-supply card with a high channel count, combined with flexibility in voltage and current ranges. With its current rating of up to 1A and voltage rating of up to 24V, Advantest’s new DC Scale XPS128+HV instrument will enable chipmakers to configure a cost-efficient, large-pin-count ATE system with many power VI channels that can test high-current as well as high-voltage components while giving them the flexibility to gang multiple channels, meeting high-current needs at all voltage levels. Having already been implemented at several customer sites, the XPS128+HV VI is now available to the global market.<img alt="" src="images/archive/new-power-supply-card-targets-high-voltage-pmic-test-1.png" /></p>
+<p><img alt="" src="images/archive/new-power-supply-card-targets-high-voltage-pmic-test-2.png" /></p>
+<p><img alt="" src="images/archive/new-power-supply-card-targets-high-voltage-pmic-test-3.png" /></p>
+<p><img alt="" src="images/archive/new-power-supply-card-targets-high-voltage-pmic-test-4.jpg" /></p>
+<p><img alt="" src="images/archive/new-power-supply-card-targets-high-voltage-pmic-test-5.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/new-power-supply-card-targets-high-voltage-pmic-test/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Current Issue</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
