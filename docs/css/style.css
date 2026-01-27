@@ -169,7 +169,7 @@ p {
 }
 
 /* Header */
-header {
+body > header {
     background-color: var(--light);
     border-bottom: 1px solid var(--border);
     position: sticky;
