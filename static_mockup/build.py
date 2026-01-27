@@ -161,12 +161,43 @@ def convert_markdown_to_html(md_content, base_image_path='images/'):
     return html
 
 
-def fix_relative_paths(html, prefix):
-    """Fix relative paths in HTML by adding a prefix for nested pages."""
+def fix_relative_paths(html, prefix, exclude_patterns=None):
+    """Fix relative paths in HTML by adding a prefix for nested pages.
+
+    Args:
+        html: The HTML content to process
+        prefix: The path prefix to add (e.g., '../')
+        exclude_patterns: List of patterns to exclude from path fixing
+    """
+    if exclude_patterns is None:
+        exclude_patterns = []
+
+    def should_fix_path(path):
+        # Don't fix absolute URLs, anchors, or already-prefixed paths
+        if path.startswith(('http://', 'https://', '//', '#', 'mailto:', '../')):
+            return False
+        # Don't fix if matches any exclude pattern
+        for pattern in exclude_patterns:
+            if re.match(pattern, path):
+                return False
+        return True
+
+    def fix_src(match):
+        path = match.group(1)
+        if should_fix_path(path):
+            return f'src="{prefix}{path}"'
+        return match.group(0)
+
+    def fix_href(match):
+        path = match.group(1)
+        if should_fix_path(path):
+            return f'href="{prefix}{path}"'
+        return match.group(0)
+
     # Fix src attributes (images, scripts)
-    html = re.sub(r'src="(?!https?://|//)(?!\.\./)([^"]+)"', f'src="{prefix}\\1"', html)
-    # Fix href attributes (css, links) but not anchors or absolute URLs
-    html = re.sub(r'href="(?!https?://|//|#|mailto:)(?!\.\./)([^"]+)"', f'href="{prefix}\\1"', html)
+    html = re.sub(r'src="([^"]+)"', fix_src, html)
+    # Fix href attributes (css, links)
+    html = re.sub(r'href="([^"]+)"', fix_href, html)
     return html
 
 
@@ -211,13 +242,17 @@ def process_page_with_layout(page_content, layouts, partials):
 
 
 def process_archive_content(layouts, partials):
-    """Process archived article content from content/archive/ directory."""
+    """Process archived article content organized by issues."""
+    import json
+
     archive_dir = CONTENT_DIR / 'archive'
+    issues_file = CONTENT_DIR / 'issues.json'
+
     if not archive_dir.exists():
         return 0
 
     processed = 0
-    archive_data = {}  # year -> list of articles
+    all_articles = {}  # slug -> article data
     print("\nProcessing archive content:")
 
     # Copy archive images to output
@@ -230,70 +265,117 @@ def process_archive_content(layouts, partials):
         image_count = len(list(archive_images_src.iterdir()))
         print(f"  Copied {image_count} archive images")
 
-    # Process each year directory
+    # Create archive output directory
+    archive_output_dir = OUTPUT_DIR / 'archive'
+    archive_output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Process each year directory to build article index
     for year_dir in sorted(archive_dir.iterdir()):
         if not year_dir.is_dir() or year_dir.name == 'images':
             continue
 
         year = year_dir.name
-        archive_data[year] = []
-        year_output_dir = OUTPUT_DIR / 'archive' / year
-        year_output_dir.mkdir(parents=True, exist_ok=True)
 
         for article_file in year_dir.glob('*.md'):
             content = article_file.read_text(encoding='utf-8')
             metadata, md_content = parse_front_matter(content)
 
-            # Get article slug from metadata or filename
             article_slug = metadata.get('slug', article_file.stem)
+            title = metadata.get('title', article_slug.replace('-', ' ').title())
 
-            # Clean up the content - remove "Posted in" lines and "end .post_content"
+            # Clean up the content
             md_content = re.sub(r'Posted\s+in\s+\[.*?\]\(.*?\)\s*\n*', '', md_content)
             md_content = re.sub(r'\s*end \.post_content\s*', '', md_content)
-            # Remove duplicate h1 title (already in header)
-            title = metadata.get('title', article_slug.replace('-', ' ').title())
             md_content = re.sub(rf'^#\s*{re.escape(title)}\s*\n*', '', md_content, flags=re.MULTILINE)
 
-            # Convert markdown to HTML (use relative path from archive/year/ directory)
-            base_image_path = '../../images/archive/'
-            html_content = convert_markdown_to_html(md_content, base_image_path)
-
-            # Get metadata values
-            category = metadata.get('category', 'Article')
-            author = metadata.get('author', '')
-            date = metadata.get('date', '')
-            excerpt = metadata.get('excerpt', '')
-            original_url = metadata.get('original_url', '')
-
-            # Store article data for index page
-            archive_data[year].append({
+            # Store article data
+            all_articles[article_slug] = {
                 'title': title,
                 'slug': article_slug,
-                'category': category,
-                'date': date,
-                'excerpt': excerpt,
-                'year': year
-            })
+                'category': metadata.get('category', 'Article'),
+                'author': metadata.get('author', ''),
+                'date': metadata.get('date', ''),
+                'excerpt': metadata.get('excerpt', ''),
+                'original_url': metadata.get('original_url', ''),
+                'year': year,
+                'md_content': md_content,
+                'file_path': str(article_file)
+            }
 
-            # Build article header with metadata
-            header_html = f'<h1>{title}</h1>'
-            header_html += '<div class="article-meta">'
-            meta_parts = []
-            if category:
-                meta_parts.append(f'<span class="article-label">{category}</span>')
-            meta_parts.append(f'<span class="article-date">{year}</span>')
-            if author:
-                meta_parts.append(f'<span class="article-author">By {author}</span>')
-            header_html += ' &bull; '.join(meta_parts)
-            header_html += '</div>'
+    print(f"  Loaded {len(all_articles)} articles")
 
-            # Get layout
-            layout = layouts.get('base')
+    # Load issue mapping
+    issues = []
+    if issues_file.exists():
+        with open(issues_file, 'r', encoding='utf-8') as f:
+            issues = json.load(f)
+        print(f"  Loaded {len(issues)} issues from issues.json")
 
-            # Create full page
-            page_html = layout.replace('{{title}}', f'{title} - Go Semi & Beyond Archive')
-            page_html = page_html.replace('{{body_class}}', '')
-            page_html = page_html.replace('{{content}}', f'''
+    # Build issue -> articles mapping
+    issue_articles = {}  # issue_slug -> list of article data
+    assigned_slugs = set()
+
+    for issue in issues:
+        issue_slug = issue['slug']
+        issue_articles[issue_slug] = []
+
+        for article_ref in issue.get('articles', []):
+            article_slug = article_ref['slug']
+            if article_slug in all_articles:
+                issue_articles[issue_slug].append(all_articles[article_slug])
+                assigned_slugs.add(article_slug)
+
+    # Articles not assigned to any issue go into "uncategorized"
+    unassigned = [a for slug, a in all_articles.items() if slug not in assigned_slugs]
+    if unassigned:
+        print(f"  {len(unassigned)} articles not assigned to issues")
+
+    # Generate individual article pages
+    for article_slug, article in all_articles.items():
+        # Determine which issue this article belongs to
+        article_issue = None
+        for issue in issues:
+            for article_ref in issue.get('articles', []):
+                if article_ref['slug'] == article_slug:
+                    article_issue = issue
+                    break
+            if article_issue:
+                break
+
+        # Convert markdown to HTML
+        base_image_path = '../images/archive/'
+        html_content = convert_markdown_to_html(article['md_content'], base_image_path)
+
+        # Build article header
+        header_html = f'<h1>{article["title"]}</h1>'
+        header_html += '<div class="article-meta">'
+        meta_parts = []
+        if article['category']:
+            meta_parts.append(f'<span class="article-label">{article["category"]}</span>')
+        if article_issue:
+            meta_parts.append(f'<span class="article-date">{article_issue["title"]} Issue</span>')
+        else:
+            meta_parts.append(f'<span class="article-date">{article["year"]}</span>')
+        if article['author']:
+            meta_parts.append(f'<span class="article-author">By {article["author"]}</span>')
+        header_html += ' &bull; '.join(meta_parts)
+        header_html += '</div>'
+
+        # Back link - to issue page if assigned, otherwise to archive
+        if article_issue:
+            back_link = f'<a href="{article_issue["slug"]}.html" class="btn-outline">&larr; Back to {article_issue["title"]} Issue</a>'
+        else:
+            back_link = '<a href="index.html" class="btn-outline">&larr; Back to Archive</a>'
+
+        original_link = f'<a href="{article["original_url"]}" class="btn-outline" target="_blank">View Original</a>' if article['original_url'] else ''
+
+        # Get layout
+        layout = layouts.get('base')
+
+        # Create full page
+        page_html = layout.replace('{{title}}', f'{article["title"]} - Go Semi & Beyond Archive')
+        page_html = page_html.replace('{{body_class}}', '')
+        page_html = page_html.replace('{{content}}', f'''
     <article class="article-page archive-article">
         <div class="article-header">
             {header_html}
@@ -302,66 +384,138 @@ def process_archive_content(layouts, partials):
             {html_content}
         </div>
         <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
-            <a href="../../archive.html" class="btn-outline">&larr; Back to Archive</a>
-            {f'<a href="{original_url}" class="btn-outline" target="_blank">View Original</a>' if original_url else ''}
+            {back_link}
+            {original_link}
         </footer>
     </article>
 ''')
-            page_html = process_template(page_html, partials)
+        page_html = process_template(page_html, partials)
 
-            # Fix relative paths for nested archive pages (archive/year/)
-            page_html = fix_relative_paths(page_html, '../../')
+        # Fix relative paths for nested archive pages
+        page_html = fix_relative_paths(page_html, '../')
 
-            # Write output
-            output_file = year_output_dir / f'{article_slug}.html'
-            output_file.write_text(page_html, encoding='utf-8')
-            processed += 1
+        # Write output
+        output_file = archive_output_dir / f'{article_slug}.html'
+        output_file.write_text(page_html, encoding='utf-8')
+        processed += 1
 
-        print(f"  {year}: {len(archive_data[year])} articles")
+    # Generate issue pages
+    for issue in issues:
+        issue_slug = issue['slug']
+        articles = issue_articles.get(issue_slug, [])
 
-    # Generate archive index data file (for use by archive page)
-    archive_index_path = OUTPUT_DIR / 'archive' / 'index.json'
-    import json
-    with open(archive_index_path, 'w', encoding='utf-8') as f:
-        json.dump(archive_data, f, indent=2)
-    print(f"  Generated archive index: archive/index.json")
+        generate_issue_page(issue, articles, layouts, partials, archive_output_dir)
+        print(f"  Generated issue page: {issue_slug}.html ({len(articles)} articles)")
 
-    # Generate static archive index HTML
-    generate_archive_index_page(archive_data, layouts, partials)
+    # Generate archive index (list of issues)
+    generate_archive_index_page(issues, issue_articles, unassigned, layouts, partials)
 
     return processed
 
 
-def generate_archive_index_page(archive_data, layouts, partials):
-    """Generate a static archive index page listing all articles by year."""
-    # Build the archive content HTML
+def generate_issue_page(issue, articles, layouts, partials, output_dir):
+    """Generate a page for a single issue listing its articles."""
+    issue_html = f'''
+    <div class="issue-page">
+        <header class="issue-header">
+            <h1>{issue['title']} Issue</h1>
+            <p><a href="../archive.html">&larr; Back to All Issues</a></p>
+        </header>
+        <div class="issue-content">
+'''
+
+    if articles:
+        issue_html += '<div class="issue-articles">'
+        for article in articles:
+            category_badge = f'<span class="article-label">{article["category"]}</span>' if article.get('category') else ''
+            # Clean up excerpt - remove "Posted in" text
+            excerpt = article.get('excerpt', '')
+            excerpt = re.sub(r'^Posted\s+in\s+\S+\s*', '', excerpt).strip()
+            if len(excerpt) > 200:
+                excerpt = excerpt[:200] + '...'
+            issue_html += f'''
+            <article class="issue-article-item">
+                <div class="issue-article-content">
+                    {category_badge}
+                    <h3><a href="{article['slug']}.html">{article['title']}</a></h3>
+                    {f'<p class="article-excerpt">{excerpt}</p>' if excerpt else ''}
+                </div>
+            </article>
+'''
+        issue_html += '</div>'
+    else:
+        issue_html += '<p class="no-articles">No articles available for this issue.</p>'
+
+    issue_html += '''
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Stay Informed</h2>
+            <p>Subscribe to Go Semi & Beyond for the latest semiconductor insights.</p>
+            <a href="subscribe.html" class="btn-primary">Subscribe Today</a>
+        </div>
+    </section>
+'''
+
+    # Get layout and build page
+    layout = layouts.get('base')
+    page_html = layout.replace('{{title}}', f'{issue["title"]} Issue - Go Semi & Beyond Archive')
+    page_html = page_html.replace('{{body_class}}', '')
+    page_html = page_html.replace('{{content}}', issue_html)
+    page_html = process_template(page_html, partials)
+
+    # Fix relative paths - exclude article links (long slugs with multiple hyphens)
+    # Article slugs have 2+ hyphens, nav pages like current-issue.html have just 1
+    page_html = fix_relative_paths(page_html, '../', exclude_patterns=[r'^[a-z0-9]+(-[a-z0-9]+){2,}\.html$'])
+
+    # Write output
+    output_file = output_dir / f'{issue["slug"]}.html'
+    output_file.write_text(page_html, encoding='utf-8')
+
+
+def generate_archive_index_page(issues, issue_articles, unassigned, layouts, partials):
+    """Generate the archive index page listing all issues."""
     archive_html = '''
     <div class="archive-page">
         <header class="archive-header">
-            <h1>Article Archive</h1>
-            <p>Browse our complete archive of semiconductor industry articles, insights, and technical content.</p>
+            <h1>Past Issues</h1>
+            <p>Browse our complete archive of GO SEMI & BEYOND newsletter issues.</p>
         </header>
         <div class="archive-content">
 '''
 
-    # Sort years descending (newest first)
-    for year in sorted(archive_data.keys(), reverse=True):
-        articles = archive_data[year]
+    # Group issues by year
+    issues_by_year = {}
+    for issue in issues:
+        year = issue['year']
+        if year not in issues_by_year:
+            issues_by_year[year] = []
+        issues_by_year[year].append(issue)
+
+    # Sort years descending
+    for year in sorted(issues_by_year.keys(), reverse=True):
+        year_issues = issues_by_year[year]
         archive_html += f'''
         <section class="archive-year">
             <h2>{year}</h2>
-            <div class="archive-articles">
+            <div class="issue-grid">
 '''
-        # Sort articles by title
-        for article in sorted(articles, key=lambda x: x['title']):
-            category_badge = f'<span class="article-label">{article["category"]}</span>' if article.get('category') else ''
+        # Sort issues by month (reverse chronological)
+        month_order = ['December', 'November', 'October', 'September', 'August', 'July',
+                       'June', 'May', 'April', 'March', 'February', 'January']
+        year_issues_sorted = sorted(year_issues, key=lambda x: month_order.index(x['month']) if x['month'] in month_order else 12)
+
+        for issue in year_issues_sorted:
+            article_count = len(issue_articles.get(issue['slug'], []))
             archive_html += f'''
-                <article class="archive-item">
-                    <div class="archive-item-content">
-                        {category_badge}
-                        <h3><a href="archive/{year}/{article['slug']}.html">{article['title']}</a></h3>
+                <a href="archive/{issue['slug']}.html" class="issue-card">
+                    <div class="issue-card-content">
+                        <h3>{issue['title']}</h3>
+                        <p class="issue-article-count">{article_count} articles</p>
                     </div>
-                </article>
+                </a>
 '''
         archive_html += '''
             </div>
@@ -383,7 +537,7 @@ def generate_archive_index_page(archive_data, layouts, partials):
 
     # Get layout and build page
     layout = layouts.get('base')
-    page_html = layout.replace('{{title}}', 'Article Archive - Go Semi & Beyond')
+    page_html = layout.replace('{{title}}', 'Past Issues - Go Semi & Beyond')
     page_html = page_html.replace('{{body_class}}', '')
     page_html = page_html.replace('{{content}}', archive_html)
     page_html = process_template(page_html, partials)

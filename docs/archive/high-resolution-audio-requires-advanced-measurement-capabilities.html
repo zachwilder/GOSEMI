@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="../images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>High-Resolution Audio Requires Advanced Measurement Capabilities - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="../index.html" class="header-logo-link">
+                    <img src="../images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="../images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../current-issue.html">Current Issue</a></li>
+                    <li><a href="../archive.html">Archive</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>High-Resolution Audio Requires Advanced Measurement Capabilities</h1><div class="article-meta"><span class="article-label">Featured Products</span> &bull; <span class="article-date">December 2018 Issue</span></div>
+        </div>
+        <div class="article-body">
+            <p>, <a href="https://www.gosemiandbeyond.com/category/uncategorized/">Uncategorized</a></p>
+<p>*By Takahiro Nakajima, Senior Expert, Analog/Mixed-signal, Advantest Corp. *</p>
+<p>Smartphones supporting High-Resolution (Hi-Res) Audio are growing more widely available, enabling consumers to experience high sound quality when streaming music, movies or other content. To accommodate High-Res Audio, these devices integrate an increased number of power management ICs (PMICs) equipped with digital-to-analog converters (DAC), which require high dynamic range testing with 24-bit resolution.</p>
+<p>This has, in turn, led to manufacturers’ increased demand for automated test equipment (ATE) with analog performance exceeding a total harmonic distortion (THD) of -130 dBc*, as well as the ability to perform 16 multi-site tests. This article details a solution for achieving both ultrahigh dynamic range performance and 16 multi-site testing.</p>
+<p>Figure 1 shows a block diagram of a smartphone. Smartphones incorporate numerous semiconductors to drive power management, connectivity, sensors, displays, audio, cameras, and memory. In recent years, there has been a trend toward integrating the PMIC and audio coder/decoder (CODEC) into a single chip, as the figure illustrates. There has also been an increase in 24-bit resolution DAC, needed for support of Hi-Res Audio.</p>
+<p><strong>What is </strong><strong>Hi-Res Audio</strong><strong>?</strong></p>
+<p>The Hi-Res Audio specification – defined by the Japan Electronics and Information Technology Industries Association (JEITA) – allows a much wider dynamic range than that provided by CDs. A Hi-Res sound source, such as 24 bit / 96 kHz or 24 bit / 192 kHz, is converted to data at a finer resolution than a CD sound source (Figure 2), so it has much more sound information compared to a CD sound source. This means that Hi-Res Audio is as close as possible to the original sound, enabling the listener to experience sound quality comparable to being in a studio or concert hall.</p>
+<p><strong>Audio testing</strong></p>
+<p>The four test methods required for audio devices are the tests for total harmonic distortion (THD); total harmonic distortion + noise (THD+N); dynamic range (DR); and signal noise ratio (SNR). Each of these tests determines various requirements associated with Hi-Res Audio, and together they create a set of parameters that must be met in order to assure the highest quality audio performance.</p>
+<p>** <strong>Once these tests are completed, frequency weighting is used to obtain measurement values matching the sensitivity of the human ear. The frequencies people hear the best are in the range from 2 to 4 kilohertz (kHz), and sensitivity declines at frequencies that are higher or lowe</strong>r.**</p>
+<p>A-weighting is commonly used for the weighting network. SNR/DR tests often show analog performance when A-weighting is applied.</p>
+<p>Measurement error occurs when measured noise can be calculated from the difference between device performance and measurement instrument performance. For example, if the difference between device performance and measurement instrument performance is 0 dB, the measurement error is 3 dB. If the difference is -5 dB, measurement error is 1.19 dB. This clearly indicates that the better the performance of the measurement instrument, the lower the measurement error.</p>
+<p><strong>Advantest solution</strong></p>
+<p>The T2000 supports three Mixed-signal modules (GPWGD, BBWGD,8GWGD) as shown in Figure 3.</p>
+<p>Advantest has developed a measurement technique with ultrahigh dynamic range to achieve industry-leading levels of analog performance for 24bit DAC solution, by adding high-precision analog circuits such as a band elimination filter (BEF) at the front-end of its T2000 general purpose waveform generator digitizer module (GPWGD).</p>
+<p>** **The target performance for the T2000 solution was set to be 5dB better than target device performance in order to enable analog measurement with higher precision from characterization to mass production (Table 1). The test results performed indicated that the T2000 Integrated Power System (IPS) + GPWGD solution can address multiple challenges associated with Hi-Res audio testing, including high dynamic range measurement, power supply/GND design and isolation, high multi-site testing.</p>
+<p>Mobile PMICs require digital, high-precision mixed-signal/analog, and power testing. As a product for automotive/industrial devices and PMICs, the T2000 IPS system can have a number of modules installed, as shown in Table 2. A high-precision analog function can also be added to the front-end of the GPWGD as a 24-bit DAC solution for Hi-Res Audio. For semiconductor manufacturing pre-processing, a wafer prober, probe card, and pogo tower can be combined together. The analog circuits can be equipped with 16 channels by mounting additional analog circuits in the user area on the wafer prober.</p>
+<p><strong>Measurement results</strong></p>
+<p>On the T2000 platform, analog performance was demonstrated with an ultra-high dynamic range, showing that the platform can achieve results beyond the target performance – as occurred when all of the audio tests listed earlier were conducted. Moreover, the results are consistent and repeatable, as indicated in Figure 4. When measurements were performed 200 times continuously with 16 multi-site tests, a typical THD result of -134 dBc was consistently obtained.</p>
+<p>The results detailed in this article indicated that twice the number of multi-site tests can be achieved compared to conventional systems when the T2000 is combined with an IPS and GPWGD module. This makes it possible for the solution to support everything from characterization to mass production for PMICs associated with Hi-Res Audio. Future test efforts will take on the challenge of solutions for 32-bit DACs that require a higher dynamic range.</p>
+<ul>
+<li>dBc = decibels relative to the fundamental carrier power level; standard measurement for total harmonic distortion (THD)<img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-1.png" /></li>
+</ul>
+<p><img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-2.png" /></p>
+<p><img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-3.png" /></p>
+<p><img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-4.png" /></p>
+<p><img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-5.png" /></p>
+<p><img alt="" src="../images/archive/high-resolution-audio-requires-advanced-measurement-capabilities-6.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../december-2018.html" class="btn-outline">&larr; Back to December 2018 Issue</a>
+            <a href="https://www.gosemiandbeyond.com/high-resolution-audio-requires-advanced-measurement-capabilities/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Current Issue</a></li>
+                        <li><a href="../archive.html">Archive</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

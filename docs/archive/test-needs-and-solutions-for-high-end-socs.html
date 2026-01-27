@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="../images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Test Needs and Solutions for High-End SoCs - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="../index.html" class="header-logo-link">
+                    <img src="../images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="../images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../current-issue.html">Current Issue</a></li>
+                    <li><a href="../archive.html">Archive</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Test Needs and Solutions for High-End SoCs</h1><div class="article-meta"><span class="article-label">Q&A</span> &bull; <span class="article-date">2023</span></div>
+        </div>
+        <div class="article-body">
+            <p><strong>Q&amp;A Interview with Ralf Stoffels</strong></p>
+<p><strong>By GO SEMI &amp; BEYOND staff</strong></p>
+<p><em>High-performance computing (HPC) is a major driver for the SoC test market, in which Advantest holds a dominant share. Sustaining and extending this leadership requires capitalizing on the company’s already strong portfolio by pursuing new strategies. Our staff spoke with Ralf Stoffels, Advantest Executive Officer and V93000 Division Manager, who expanded on key points from a presentation given to Advantest investors in December 2022.</em></p>
+<p><strong>Q. Let’s start with the HPC market. What are some reasons it is such a driving force?</strong></p>
+<p>A. The semiconductor industry is widely projected to become a US$1 trillion market by 2030, with three segments representing 70% of this growth: automotive, wireless communications, and computing and data storage. If you look at the evolution of HPC, each new era has emerged more quickly than the last, and we are now at the point where the demand for processing high volumes of data has propelled us into the age of exascale computing (Figure 1). </p>
+<p><em>Figure 1. Each successive era of computing is evolving orders of magnitude more quickly than the one before, with HPC and AI driving the semiconductor industry toward the $1T mark by 2030.</em></p>
+<p><strong>Q.What are some of the specific HPC trends, and why are they pushing SoC test forward?</strong></p>
+<p>A. The technical trends for HPC illustrate the growing level of complexity in these applications. Key trends include: the rise of chiplets, which we’re seeing everywhere; new Arm server CPUs; larger packages for smaller nodes, which are being ramped by computing rather than mobile devices; 3D package constructs, from micro bumps to hybrid bonding; heightened power and thermal demands created by power supplies; and massive communication challenges created by very large, high-speed data networks.</p>
+<p>Data centers, one of the primary applications for HPC chips, are essential for training and operating AI models, which are being employed for everything from autonomous driving to advanced chatbot assistants. In turn, this requires access to the tens of thousands of graphical processing units (GPUs) needed to analyze high volumes of data in real time.</p>
+<p>All of these developments together create massive data requirements that result in new test demands to accommodate this 100x rise in complexity, which is pushing the ATE market toward US$10 billion by the end of the decade, as shown in Figure 2.</p>
+<p><em>Figure 2. Fast-growing device complexity is driving the market size for ATE. These indicators point to the total available market reaching US$10 billion by 2030.</em></p>
+<p><strong>Q. HPC processors have a longer product development cycle than those for, say, smartphones. At what point in this process does test become critical?</strong></p>
+<p>A. During the early phases of product development, semiconductor manufacturers are focused on improving productivity while optimizing techniques essential to functionality. The need for test is particularly high during these early stages. HPC devices are no different in this respect. There are many test needs associated with ramping new nodes, and next-generation devices are always in development. While test is most critical during early development to achieve desired functionality and eliminate bugs, test needs will be consistently distributed across the lifetime of new and emerging devices.</p>
+<p><strong>Q. How has the V93000 contributed to Advantest securing its strong market position in SoC?</strong></p>
+<p>A. We’re addressing these complex demands with the latest offshoot of our flagship V93000 platform, the V93000 EXA Scale. Establishing V93000 as a scalable platform has allowed us to continually expand its range and functionality to accommodate testing devices for a wide range of applications. This flexibility is a core element of the V93000’s long-term success. We were also the first ATE company to establish long-term compatibility with a single test platform – this is crucial for customers migrating to the next generation of test capabilities. In addition, through our market leadership and customer relationships, we understand what lies ahead for the industry so that our R&amp;D efforts continue to stay on top of HPC requirements.</p>
+<p><em>Figure 3. Advantest has continually developed industry-first HPC-level capabilities for the V93000 SoC test platform.</em></p>
+<p>Figure 3 illustrates the evolution of our leadership in HPC innovations, highlighting some of our computationally focused developments. One of the more recent of these developments is the XPS256 device power supply (DPS), which scales from milliamps to more than 1000 amps, covering all power requirements in a single DPS card. We are seeing a number of existing V93000 customers make the transition to EXA Scale for the system’s inherent capabilities as well as options such as the XPS256 and the Pin Scale 5000. When configured with these cards, the EXA Scale system is well equipped to meet exascale computing requirements for mobile, AI, HPC and other advanced devices.</p>
+<p><strong>Q. What else should readers know about HPC test requirements and how Advantest is addressing them?</strong></p>
+<p>A. Efforts to continue extending Moore’s Law rest on 3D integration – chiplets, stacked packages, FinFETs, etc. This technology is vital to the future of the industry, and it also generates new and different failure types that we have not seen before, necessitating new test approaches and faster testers. EXA Scale is the only tester that can reach 5Gbps on every pin and also has the deepest ATE memories, allowing it to deal with this advanced complexity. In addition, the XPS256 is fully integrated with the EXA Scale system and digitally controlled, so different channels can all be connected by a digital bus, so they can all be kept synchronized and completely controlled by the computational paths inside the system, with no analog factors. This has never been done before, and it allows us to be faster and much more precise in terms of controlling the voltage as well as protecting the device or the probe card. If something goes wrong, we can switch off immediately.</p>
+<p>In addition, customers can execute software and interact with their systems via our Link Scale family of digital channel cards for the V93000 platform, which enables software-based functional testing and USB/PCI Express (PCIe) scan testing of advanced semiconductors. The card essentially behaves like your computer, communicating with the device under test through a standard high-speed serial interface to enable very fast transfer of functional and scan test content. Because the device can be interacted with on the wafer the way they’ll be used later on when they’re singulated and packaged, the user can increase test coverage and throughput simultaneously as well as realize faster time to market. </p>
+<p>As new HPC computing developments arise, Advantest is well-positioned to address concurrent test needs through our V93000 platform and continually expanding portfolio of best-in-class cards and peripherals.<img alt="" src="../images/archive/test-needs-and-solutions-for-high-end-socs-1.png" /></p>
+<p><img alt="" src="../images/archive/test-needs-and-solutions-for-high-end-socs-2.png" /></p>
+<p><img alt="" src="../images/archive/test-needs-and-solutions-for-high-end-socs-3.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../index.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/test-needs-and-solutions-for-high-end-socs/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Current Issue</a></li>
+                        <li><a href="../archive.html">Archive</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

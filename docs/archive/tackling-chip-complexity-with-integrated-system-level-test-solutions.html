@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="../images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Tackling Chip Complexity with Integrated System-Level Test Solutions - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="../index.html" class="header-logo-link">
+                    <img src="../images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="../images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../current-issue.html">Current Issue</a></li>
+                    <li><a href="../archive.html">Archive</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Tackling Chip Complexity with Integrated System-Level Test Solutions</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">2025</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>By Davette Berry, Senior Director of Business Development, Advantest</em></p>
+<p>As the sophistication of semiconductors continues to grow, so does the need for system-level test (SLT) in production to ensure that high-performance processors, chiplets, and other advanced devices function as expected in real-world environments. Once seen primarily as a fallback to catch what traditional automated test equipment (ATE) missed, SLT has now become a mission-critical step for validating AI accelerators and central, graphical and application processing units (CPUs, GPUs, and APUs) before market release. It’s increasingly being evaluated for use in production of devices like network and automotive processors—where reliability is non-negotiable. However, implementing SLT at production scale introduces new complexities in balancing cost, throughput, and test coverage.</p>
+<p>While ATE works by driving known test patterns to stimulate in-chip circuitry and observe expected internal responses, SLT, in contrast, looks at how the chip behaves as part of a larger system, focusing on interactions across cores and peripherals, including aspects like power regulation and sensor behavior. This means that SLT platforms must support a broad mix of application-level use cases and interfaces, especially when testing cutting-edge semiconductors.</p>
+<p>This requirement grows even more pressing with the rise of chiplet-based design strategies. Instead of assessing a single chip in isolation, SLT can evaluate the communication between multiple dies in a single package. This ability to help validate cross-chip data paths and their impact on power, performance, and reliability is a key advantage of SLT. However, many SLT deployments still rely on manual methods of creating the test content, which limits their scalability.</p>
+<p><strong>Overcoming coverage gaps</strong></p>
+<p>Electronic design automation (EDA) companies have helped chip designers automatically generate structural test patterns to achieve close to 99% transistor coverage. With today’s 100-billion-transistor AI processors, this coverage still leaves a billion transistors unchecked. Closing this last 1% gap using only ATE is an expensive, time-consuming effort, often requiring months of development time.</p>
+<p>Furthermore, chiplet integration introduces new mechanical and thermal challenges. With fewer external access points, test engineers must route signals through complex, multi-die pathways. These large packages can warp, complicating socket alignment and risking poor (device-under-test) DUT connectivity. Under load, heat spots form across tightly integrated dies—an issue that demands close coordination between thermal control, actuation mechanics, and power sequencing in the SLT system.</p>
+<p>SLT implementation also requires cross-disciplinary cooperation. Test content needs to be co-developed and validated by stakeholders across the ecosystem—equipment and socket vendors, silicon designers, OSATs, and application board manufacturers, along with end-users like hyperscale data center operators or smartphone OEMs. The SLT test station must authentically replicate the device’s actual operating environment.</p>
+<p>As power demands rise, testing infrastructure must keep pace. SLT test times can last 30 minutes or more, pushing facilities to deploy dense configurations of testers within space- and energy-efficient layouts. At the same time, the DUTs and their supporting hardware continue to grow in size and complexity.</p>
+<p><strong>Advances in test methodology</strong></p>
+<p>The chip industry has responded with new design for test (DFT) methods that deliver test data over high-speed serial interfaces—like USB or PCIe—rather than parallel pin scan chains. During SLT, once these ports are activated and enumerated, test programs can operate through them to trigger built-in tests or deliver packetized patterns, minimizing pin requirements while maximizing coverage.</p>
+<p>Once validated, this structural test content can be correlated across various platforms—ATE, SLT, and post-silicon validation—improving debug efficiency and accelerating time to market. Advantest supports this with platforms like <a href="https://www.advantest.com/en/products/semiconductor-test-system/soc/v93000/">Link Scale</a> and our new <a href="https://www.advantest.com/en/products/siconic/">SiConic™</a> system, helping unify the test and validation landscape.</p>
+<p>Thermal management remains a universal concern. Testing power-hungry processors in aggressive workloads stresses both the DUT and the test infrastructure. Solutions today span from traditional air cooling to advanced liquid and refrigerant-based systems, all while emphasizing environmental sustainability. SLT handlers must support repeated thermal cycling and actuation without compromising electro-mechanical stability or DUT safety.</p>
+<p>Machine learning and AI bring fresh opportunities to optimize test operations. Advantest’s platforms, now equipped with <a href="https://www.advantest.com/en/products/acs/rtdi/">Real-Time Data Infrastructure (RTDI™)</a>, deliver fast, secure access to test data, empowering AI tools to enhance yield and resource utilization.</p>
+<p><strong>Advantest’s integrated SLT offering</strong></p>
+<p>Advantest delivers a cohesive ecosystem of SLT solutions tailored to modern semiconductor demands. Our lineup includes ATE handlers, lab-grade engineering testers, and full-scale SLT systems, all designed with shared physical and thermal interfaces to simplify correlation and integration.</p>
+<p>Our thermal systems will support up to 5000 W per DUT and enable multizone thermal management, with programmable set points that adapt dynamically during test cycles. These capabilities are essential for maintaining test fidelity in the face of rising power levels and integration density.</p>
+<p>In the past, some chipmakers had no choice but to build their own SLT test setups from scratch. Advantest now offers turnkey SLT test cells that integrate all critical components—test execution, thermal and power control, mechanical handling, and test content delivery—backed by our global service infrastructure. These systems ensure every test cell remains consistent, controlled, and up to date.</p>
+<p>We work directly with customers to simulate how packages will behave thermally and mechanically during test. This includes modeling warpage, compression, and power dynamics—all of which are crucial for validating new packaging formats, including future designs like co-packaged optics.</p>
+<p><strong>A Software Suite for End-to-End Device Control and Holistic Test Cell Management</strong></p>
+<p>To orchestrate all this complexity, Advantest offers <a href="https://www.advantest.com/en/products/component-test-system/system-level-test-systems/activate/">ActivATE360™</a>, our integrated software suite for SLT and burn-in systems. The platform includes:</p>
+<ul>
+<li>Studio360 – a complete integrated development environment and software development kit for test program development and test hardware control.</li>
+<li>Device360 – for managing DUT communication and executing binaries, test contents and test flows.</li>
+<li>Cluster360 – enables real-time, cross-platform messaging with support for multiple languages and application interfaces.</li>
+<li>Cell360 – to manage distributed test cells and process lots and generate operator instructions.</li>
+<li>Facility360 – for monitoring and optimizing test operations at the facility level.</li>
+</ul>
+<p>ActivATE360 seamlessly communicates with Advantest Cloud Solutions (ACS) and SmarTest 8 software for ATE, enabling real-time data sharing, unified debug, and cross-insertion test correlation. Used with hardware like Link Scale and SiConic, these tools help accelerate validation and close the loop from silicon design to high-volume production.</p>
+<p><strong>Delivering SLT at Scale</strong></p>
+<p>With decades of expertise in building high-throughput test systems, Advantest is well-positioned to meet the demands of system-level testing. Our robust handlers and SLT systems are built for longevity, mechanical precision, and thermal performance—while maintaining uptime in high-volume environments. Whether you’re testing massive AI chips or future-ready chiplet systems, Advantest ensures that every SLT investment delivers maximum value, scalability, and support.<img alt="" src="../images/archive/tackling-chip-complexity-with-integrated-system-level-test-solutions-1.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../index.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/tackling-chip-complexity-with-integrated-system-level-test-solutions/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Current Issue</a></li>
+                        <li><a href="../archive.html">Archive</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

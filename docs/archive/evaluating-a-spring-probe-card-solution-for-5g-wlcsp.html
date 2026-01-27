@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="../images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Evaluating a spring probe card solution for 5G WLCSP - Go Semi & Beyond Archive</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="../index.html" class="header-logo-link">
+                    <img src="../images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="../images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../current-issue.html">Current Issue</a></li>
+                    <li><a href="../archive.html">Archive</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../subscribe.html" class="btn-small">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Evaluating a spring probe card solution for 5G WLCSP</h1><div class="article-meta"><span class="article-label">Featured Products</span> &bull; <span class="article-date">2019</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>By Krzysztof Dabrowiecki, Feinmetall GmbH, Thomas Gneiting AdMOS Gmb], Jose Moreira Advantest</em></p>
+<p>With the deployment of the wireless 5G standard and its support for mmWave frequencies that allow gigabits-per-second data rates on the consumer market, the semiconductor industry needs reliable and low-cost test solutions. The 5G standard allows mmWave range frequencies from 24GHz to 28GHz—to frequencies as high as 44GHz, and possibly even higher.  To achieve these frequencies requires reliable, highly efficient, cost-effective chip packaging technology. </p>
+<p>From that point of view, wafer-level chip-scale packaging (WLCSP) offers one of the most compact package footprints, providing a high level of functionality, and a frequency range with low resistance and inductance path. Despite having a good thermal performance with a finer pitch interconnection to the printed circuit board (PCB), WLCSP is resilient to extreme variations in stress, drop, and vibration. At the wafer test level, WLCSP technology requires a good and consistent contact resistance, a relatively high contact force with short probes, and above all, an effective online cleaning together with easy onsite repair [1]. With respect to those electromechanical wafer test requirements and with added value such as a frequency performance higher than 28GHz, or a high current capability, the spring pin probe card technology is always a favorite on the test floor on account of its cost and versatility and worthwhile to evaluate for high frequency 5G mmWave applications [2-4].</p>
+<p>To define the best possible probe card structure, detailed electromagnetic simulations and analyses are required. RF engineers have several modeling approaches available for this type of simulation, such as a lumped element model (SPICE), distributed element model, or 3D electromagnetic (EM) models. For this study, it was decided to utilize CST Studio Suite 3D EM simulation software.  It allows us to build and analyze an exact and detailed 3D-model of the probe card. A probe card acts as an interconnector on the signal transmission path between the wafer chip and automated test equipment (ATE). Therefore, it is vital to keep in mind that, besides the probe card, there are other challenges with respect to ATE and the PCB side.</p>
+<p>On the ATE side, mmWave frequencies already present significant implementation challenges, including the measurement instrumentation and interconnect to the ATE device under test (DUT) test fixture PCB. </p>
+<p><em>Figure 1</em></p>
+<p><strong>Figure 1 </strong>shows a picture of the bottom of an ATE mmWave test fixture, where it is possible to observe the blind mating connectors to the ATE system and the coaxial cables. They are connected to coaxial connectors, very close to the socket. The use of coaxial cables in the test fixture is essential because a coaxial cable is significantly less lossy than any PCB signal trace. The PCB test fixture challenges, however, are not the main subject of this paper.</p>
+<p>The system assembly and modeling (SAM) framework was used to investigate and optimize a signal path. It consists of multiple individual components, such as wafer bump, probe head, and PCB. These are described by relevant physical quantities such as field magnitudes or s-parameters.  This paper is trying to find an answer and explore three objectives: 1) the impact of different materials and probe head designs on the mmWave performance, 2) analysis of s-parameters and crosstalk, and 3) the probe head design optimization to improve them. Crosstalk is also an important parameter that is taken into account. The presented analysis results reveal the impact of different structure probe head elements on the s-parameter results.</p>
+<p><strong>Simulation model</strong></p>
+<p><em>Figure 2</em></p>
+<p><strong>Figure 2 </strong>shows an example of what mmWave RF peripheral ports (AN1, AN2) might look like on a 5G DUT. The diagonal bump pitch is 0.4mm, with a bump height of 100mm. The distance, in a row, between RF bumps is 0.566mm. Initially, a spring pin was chosen with uncompressed length L=3.7mm, at working mode L1=3.5mm.  The PCB thickness was 3.8mm and used a hybrid stack-up of the FR4 and Tachyon 100G for dielectric material. The matched trace lengths were designed at 38.8mm. Because of the symmetrical PCB traces layout, the simulation was performed for the critical traces only and one-quarter of the PCB. The RF 3D model analysis includes the wafer solder bump, probe head, and contact with the PCB, in which the traces are included up to the connector locations.  </p>
+<p><em>Figure 3</em></p>
+<p><strong>Figure 3 </strong>illustrates a quarter of the probe card model and trace topology.</p>
+<p><em>Figure 4</em></p>
+<p><strong>Figure 4 </strong>shows a model of a probe head in contact with the wafer at the bottom and the PCB at the top. The probe head is a 2-layer structure comprising guiding plates and fillers between the plates. The filler layers are the additional materials added between the guiding plates with various dielectric constants and loss tangent. The double plunger spring pins are inserted into drilled holes in the guiding plates and fillers. The pin plunger protrusions at the working mode are formed with a uniform air gap of 0.1mm between the head and the PCB, and 0.25mm between the head and wafer. The created 3D simulation model allows quick verification of results to identify appropriate material properties and geometry before building a test probe card.</p>
+<p><strong>Initial simulation results</strong></p>
+<p>It is well-known that any impedance mismatch in the signal path will have an impact on the return loss and in that way, degrade the measurement path performance. Therefore, impedance is a crucial parameter to be checked and controlled. In the PCB industry, the common impedance specification is in the range of 50 +/-10% Ohm for a single ended signal. But 5% is possible in certain cases, though at a very high cost.</p>
+<p><em>Figure 5</em></p>
+<p><strong>Figure 5 </strong>shows the simulated time domain reflectometry (TDR) plot for the model with various filler materials wit a time rise of 29.2ps (for 30GHz). The dashed lines indicate the maximum and minimum impedance tolerances. In the figure, it can be noticed that the air gap between the guiding plates causes an impedance discontinuity that peaks at</p>
+<p>70 Ohms. The material option 1 shows a drop in the impedance discontinuity peak at 41 Ohm. The material B options 2 and 3 significantly reduce the impedance discontinuity to an acceptable range. As a consequence of material B air and option 1, the insertion loss and return loss had a limited frequency bandwidth, as shown in <strong>Figure 6</strong>. In this case, the dashed lines reveal acceptable limits of -1dB for insertion loss, and -10dB for return loss.</p>
+<p><strong>To read full article please visit Chip Scale Review December 2019 issue, page 14:  </strong><a href="http://fbs.advantageinc.com/chipscale/nov-dec_2019/52/">http://fbs.advantageinc.com/chipscale/nov-dec_2019/52/</a></p>
+<p>Did you enjoy this article? <a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLlllSx9KsYRBGtAwx3BUnAXKOaTpnrPkps9ENqJ2xavSS4iHZoRcF3vbOUMslAszWh5o0QemBpi7ixX88dplnKCbCc1wBocZnWqQunAJgFjTckoqFGgqvpIFXY1CeP37TR15PDr8yiOViQ%3D">Subscribe</a> to GOSEMI AND BEYOND<img alt="" src="../images/archive/evaluating-a-spring-probe-card-solution-for-5g-wlcsp-1.png" /></p>
+<p><img alt="" src="../images/archive/evaluating-a-spring-probe-card-solution-for-5g-wlcsp-2.png" /></p>
+<p><img alt="" src="../images/archive/evaluating-a-spring-probe-card-solution-for-5g-wlcsp-3.png" /></p>
+<p><img alt="" src="../images/archive/evaluating-a-spring-probe-card-solution-for-5g-wlcsp-4.png" /></p>
+<p><img alt="" src="../images/archive/evaluating-a-spring-probe-card-solution-for-5g-wlcsp-5.png" /></p>
+        </div>
+        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="../index.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="https://www.gosemiandbeyond.com/evaluation-of-a-spring-probe-card-solution-for-5g-wlcsp-applications/" class="btn-outline" target="_blank">View Original</a>
+        </footer>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Current Issue</a></li>
+                        <li><a href="../archive.html">Archive</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../subscribe.html">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
