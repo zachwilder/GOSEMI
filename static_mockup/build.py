@@ -190,8 +190,9 @@ def process_page_with_layout(page_content, layouts, partials):
 
     layout = layouts[layout_name]
 
-    # Replace {{title}} and {{content}} in layout
+    # Replace {{title}}, {{body_class}}, and {{content}} in layout
     result = layout.replace('{{title}}', metadata.get('title', 'Go Semi & Beyond'))
+    result = result.replace('{{body_class}}', metadata.get('body_class', ''))
     result = result.replace('{{content}}', content)
 
     # Process partials

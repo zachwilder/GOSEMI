@@ -174,7 +174,7 @@ header {
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .logo-container {
@@ -190,12 +190,39 @@ header {
 .header-logo-link {
     display: flex;
     align-items: center;
+    gap: 12px;
     text-decoration: none;
 }
 
-.header-logo {
+.header-logo-full {
     height: 80px;
     width: auto;
+}
+
+.header-logo-circle {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: none;
+}
+
+.header-logo-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: 2px;
+    display: none;
+}
+
+/* Homepage: show simplified logo, hide full logo */
+body.home .header-logo-full {
+    display: none;
+}
+
+body.home .header-logo-circle,
+body.home .header-logo-text {
+    display: block;
 }
 
 .site-title {
@@ -213,10 +240,6 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-header .main-nav-container {
-    padding: 20px 15px;
 }
 
 nav ul {
