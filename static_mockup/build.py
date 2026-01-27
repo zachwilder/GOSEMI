@@ -415,10 +415,10 @@ def process_archive_content(layouts, partials):
         <div class="article-body">
             {html_content}
         </div>
-        <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+        <div class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
             {back_link}
             {original_link}
-        </footer>
+        </div>
     </article>
 ''')
         page_html = process_template(page_html, partials)
@@ -668,9 +668,9 @@ def process_markdown_content(layouts, partials):
         <div class="article-body">
             {html_content}
         </div>
-        <footer class="article-footer">
+        <div class="article-footer">
             <a href="current-issue.html" class="btn-outline">&larr; Back to Current Issue</a>
-        </footer>
+        </div>
     </article>
 ''')
                 page_html = process_template(page_html, partials)
