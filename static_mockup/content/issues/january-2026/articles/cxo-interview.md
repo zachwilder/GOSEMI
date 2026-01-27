@@ -1,0 +1,52 @@
+---
+title: "Trusted Innovation, Navigating Complexity - Interview with CxOs"
+slug: cxo-interview
+category: Spotlight on Business
+author: Go SEMI & BEYOND Staff
+date: January 2026
+excerpt: Advantest's global CxO team discusses strategies for navigating today's complex market, from chiplet technology to AI-driven supply chains.
+---
+
+*As the industry enters a new era characterized by the rapid development of AI technology and increasing complexity, Advantest's global CxO team is working together closely to determine the best strategies for navigating today's market. We spoke with Chief Technology Officer Juergen Serrer, Chief Supply Chain Officer Richard Junger, and Chief Customer Relations Officer Sanjeev Mohan about their collaborative process and their plans to drive future success.*
+
+*This article is excerpted from Advantest's 2025 Integrated Annual Report. The full version can be viewed [here](https://www.advantest.com/en/investors/ir-library/annual/).*
+
+By Go SEMI & BEYOND Staff
+
+## What is complexity, and where do we see it in the semiconductor industry today?
+
+**Serrer**: Our customers are now faced with the fact that multiple new technologies are stacking up. For example, chiplets are small integrated circuits designed for a specific function and are paired with multiple other chiplets in a single package. Chiplets enable higher performance, scalability, and yield. However, with stacking and integration, chiplets also present unique thermal challenges, which are significant factors in failure mechanisms. Additionally, new technologies in various fields are driving the evolution of semiconductors, such as silicon photonics and enormous amounts of memory with HBM, all of which are accelerating simultaneously. Not to mention, our customers are in a time-to-market race. All of these challenges are combined under the term "complexity."
+
+**Junger**: The complexity of devices designed and manufactured by our customers adds complexity to their supply chains, which in turn increases the complexity of our own supply chains. Additionally, the supply side of the market is also experiencing complexity due to geopolitical challenges stemming from the evolving dynamics of the AI industry.
+
+So, we are essentially facing complexity on both ends: on the customer side and on the supply chain side.
+
+## What does growing complexity mean for the industry, and for Advantest?
+
+**Mohan**: As complexity grows, our customers are expecting more from Advantest. In the past, we have been leaders in ATE. But now, as these devices become increasingly complex, customers are seeking a comprehensive solution and our total expertise regarding a variety of subjects such as parts management, device handling, thermal power challenges, and any other concerns they may have.
+
+**Serrer**: The problems we are seeing in the industry right now are interdisciplinary. Years ago, a design problem could only be solved in design. Problems with test were addressed by the test team. However, the issues we face today can only be resolved through collaboration between all disciplines. The Era of Complexity needs solutions along all insertions, and the solutions need to be interdisciplinary. That is why we are talking to EDA companies and have partnerships with probe card companies. We are working to ensure that we not only deliver a tester but also provide a comprehensive solution, including interfaces and peripherals that they need.
+
+As for what complexity means for Advantest, this complexity is good for us because it drives the need for more tests, additional test capabilities, and new test methodologies. So, rather than a threat, I think it presents a unique opportunity for Advantest.
+
+## How is the role of test evolving, and how must Advantest transform to keep pace with the rising complexity in customer needs?
+
+**Serrer:** Like I said before, the issues our customers see are interdisciplinary. All technologies are stacking, and they are asking us for more efficiency. So, how do you do that? Unlike in the past when test was a binary go/no-go decision, today's role of test involves device trimming that adjusts the underlying design, so devices are calibrated properly and perform as intended. This enables engineers to feed back data to improve both design and manufacturing processes. As semiconductors have become increasingly complex, featuring multiple chiplets and memory ICs stacked and packaged into a single device, testing has evolved to employ a wide range of test methodologies and capabilities, adapting to the diverse needs of different devices and test scenarios. Our strategy is to innovate the entire flow, linking all test insertions from design to wafer sort, final test, and system-level test, into one unified flow. With that in mind, our newly released product SiConic plays a significant role because it allows us to bridge the gap between ATE and EDA or design. We want to make sure that test content is debugged, reusable, and that the data acquired during testing is analyzed and fed back to improve the design and manufacturing process. This approach aligns with our "Automation of Test" strategy, which aims to increase efficiency and enable our customers to accelerate their time-to-market and enhance product quality.
+
+## What sets Advantest apart? What specific strengths does the company have in testing AI/HPC applications?
+
+**Mohan:** Advantest's growth over the last year has come as a result of our market position in the AI-related business segment. There are many reasons for this success. It starts with our V93000 product line, which has been an industry leader in the high-performance compute space for many, many years. With our V93000, we have been testing GPUs for decades, and we have learned a lot in terms of how to test these types of devices. Because of our technical expertise, we have also had strong relationships with leading manufacturers of HPC devices for a very long period of time. As I mentioned earlier, we value our relationships with our customers, and we cater to a diverse set of needs, ranging from technical to business and commercial aspects. That has really allowed us to develop products in line with our customers' offerings, so we can evolve together and set ourselves apart in this space.
+
+## Looking ahead, what future trends do you see affecting Advantest's business in the future? What investments are key to maintaining a competitive edge?
+
+**Serrer:** I think we have been pretty good in recent years at predicting trends---something that is reflected in our market leadership in high-performance computing, AI, and high-bandwidth memory. Key trends we are seeing now include more test content, higher speeds, thermal, and power, also resulting in changing test methodologies. We will continue to invest in efficiency and optimization, for sure. Second, we will continue to invest in technology leadership, whether that is ASIC development, high-speed interfacing technology, or die-level handling solutions.
+
+There is also silicon photonic testing---something we have been investing in for a long time.
+
+Internally, we must become more efficient to keep pace with the rapid growth in the AI market. We have structured the test system business group in a way that allows us to have business units for every market segment, enabling us to learn quickly and respond effectively. Under my leadership, I ensure that the views and components of each business unit are aligned to create a cohesive test strategy along all insertions for our customers.
+
+**Junger:** Based on our MTP3 strategy to promote operational excellence, we are driving a digital transformation of our entire supply chain. This is something I will manage in my integrated roles of Chief Supply Chain Officer, Chief Information Officer, and Chief Digitalization Officer. Our focus now is on building a "Connected Supply Chain"---a fully integrated, data-driven ecosystem that provides real-time visibility across demand, order status, production, and delivery. This digital infrastructure allows us to share data with our partners, empowering them to make quick decisions and respond flexibly to market changes.
+
+To unlock further value, we are applying AI and advanced analytics to identify and resolve issues that were previously undetectable, paving the way for significant improvements in quality, productivity, and responsiveness.
+
+We consider digital transformation to be essential to future competitiveness.

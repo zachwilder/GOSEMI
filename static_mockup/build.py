@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple template build script for Go Semi and Beyond static mockup.
+Template build script for Go Semi and Beyond static site.
 
 Usage:
     python build.py          # Build once
@@ -18,6 +18,10 @@ Page front-matter (at top of page files):
     ---
 
     <page content here>
+
+Content Management:
+    Markdown content for issues goes in content/issues/<issue-slug>/
+    Each issue has an index.md with metadata and articles in articles/
 """
 
 import os
@@ -28,11 +32,19 @@ import shutil
 import argparse
 from pathlib import Path
 
+try:
+    import markdown
+    MARKDOWN_AVAILABLE = True
+except ImportError:
+    MARKDOWN_AVAILABLE = False
+    print("Warning: markdown library not installed. Run: pip install markdown")
+
 # Configuration
 SRC_DIR = Path(__file__).parent / 'src'
 PARTIALS_DIR = SRC_DIR / 'partials'
 LAYOUTS_DIR = SRC_DIR / 'layouts'
 PAGES_DIR = SRC_DIR / 'pages'
+CONTENT_DIR = Path(__file__).parent / 'content'
 STATIC_MOCKUP_DIR = Path(__file__).parent
 OUTPUT_DIR = Path(__file__).parent.parent / 'docs'  # Output to /docs for GitHub Pages
 
@@ -90,11 +102,63 @@ def parse_front_matter(content):
             for line in front_matter.split('\n'):
                 if ':' in line:
                     key, value = line.split(':', 1)
-                    metadata[key.strip()] = value.strip()
+                    metadata[key.strip()] = value.strip().strip('"\'')
             # Return content without front-matter
             return metadata, parts[2].strip()
 
     return metadata, content
+
+
+def clean_markdown(content):
+    """Clean up pandoc-generated markdown artifacts."""
+    # Remove {.mark} class markers
+    content = re.sub(r'\{\.mark\}', '', content)
+    # Remove width/height attributes from images
+    content = re.sub(r'\{width="[^"]*"\s*height="[^"]*"\}', '', content)
+    content = re.sub(r'\{width="[^"]*"\}', '', content)
+    content = re.sub(r'\{height="[^"]*"\}', '', content)
+    # Clean up escaped characters
+    content = content.replace('\\#', '#')
+    content = content.replace('\\[', '[')
+    content = content.replace('\\]', ']')
+    # Remove "AI-generated content may be incorrect" from image alt text
+    content = re.sub(r'AI-generated content may be incorrect\.?', '', content)
+    # Clean up superscript notation (e.g., cm^2^)
+    content = re.sub(r'\^(\d+)\^', r'<sup>\1</sup>', content)
+    return content
+
+
+def convert_markdown_to_html(md_content, base_image_path='images/'):
+    """Convert markdown content to HTML."""
+    if not MARKDOWN_AVAILABLE:
+        return f"<pre>{md_content}</pre>"
+
+    # Clean up the markdown first
+    md_content = clean_markdown(md_content)
+
+    # Fix image paths - convert absolute paths to relative
+    def fix_image_path(match):
+        alt_text = match.group(1).strip()
+        img_path = match.group(2)
+        # Extract just the filename from the path
+        filename = Path(img_path).name
+        # Return cleaned markdown image
+        return f'![{alt_text}]({base_image_path}{filename})'
+
+    md_content = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', fix_image_path, md_content)
+
+    # Convert to HTML
+    md = markdown.Markdown(extensions=['tables', 'fenced_code', 'toc'])
+    html = md.convert(md_content)
+
+    # Add figure captions for images followed by italic text
+    html = re.sub(
+        r'(<img[^>]+>)\s*</p>\s*<p><em>([^<]+)</em>',
+        r'<figure>\1<figcaption>\2</figcaption></figure>',
+        html
+    )
+
+    return html
 
 
 def process_template(content, partials):
@@ -134,6 +198,133 @@ def process_page_with_layout(page_content, layouts, partials):
     result = process_template(result, partials)
 
     return result
+
+
+def process_markdown_content(layouts, partials):
+    """Process markdown content from content/issues/ directory."""
+    if not CONTENT_DIR.exists():
+        return 0
+
+    issues_dir = CONTENT_DIR / 'issues'
+    if not issues_dir.exists():
+        return 0
+
+    processed = 0
+    print("\nProcessing markdown content:")
+
+    for issue_dir in issues_dir.iterdir():
+        if not issue_dir.is_dir():
+            continue
+
+        issue_slug = issue_dir.name
+        print(f"  Processing issue: {issue_slug}")
+
+        # Copy issue images to output
+        media_dir = issue_dir / 'media'
+        if media_dir.exists():
+            output_images_dir = OUTPUT_DIR / 'images' / 'issues' / issue_slug
+            output_images_dir.mkdir(parents=True, exist_ok=True)
+            for img_file in media_dir.iterdir():
+                if img_file.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.emf']:
+                    shutil.copy2(img_file, output_images_dir / img_file.name)
+            print(f"    Copied images to images/issues/{issue_slug}/")
+
+        # Process individual article markdown files
+        articles_dir = issue_dir / 'articles'
+        if articles_dir.exists():
+            for article_file in articles_dir.glob('*.md'):
+                content = article_file.read_text(encoding='utf-8')
+                metadata, md_content = parse_front_matter(content)
+
+                # Get article slug from metadata or filename
+                article_slug = metadata.get('slug', article_file.stem)
+
+                # Convert markdown to HTML
+                base_image_path = f'images/issues/{issue_slug}/'
+                html_content = convert_markdown_to_html(md_content, base_image_path)
+
+                # Get metadata values
+                title = metadata.get('title', article_slug.replace('-', ' ').title())
+                category = metadata.get('category', 'Article')
+                author = metadata.get('author', '')
+                date = metadata.get('date', '')
+                excerpt = metadata.get('excerpt', '')
+
+                # Build article header with metadata
+                header_html = f'<h1>{title}</h1>'
+                if category or date or author:
+                    header_html += '<div class="article-meta">'
+                    meta_parts = []
+                    if category:
+                        meta_parts.append(f'<span class="article-label">{category}</span>')
+                    if date:
+                        meta_parts.append(f'<span class="article-date">{date}</span>')
+                    if author:
+                        meta_parts.append(f'<span class="article-author">By {author}</span>')
+                    header_html += ' &bull; '.join(meta_parts)
+                    header_html += '</div>'
+
+                # Wrap in article layout
+                article_layout = layouts.get('article', layouts.get('base'))
+
+                # Create full page
+                page_html = article_layout.replace('{{title}}', title)
+                page_html = page_html.replace('{{content}}', f'''
+    <article class="article-full">
+        <header class="article-header">
+            {header_html}
+        </header>
+        <div class="article-body">
+            {html_content}
+        </div>
+        <footer class="article-footer">
+            <a href="current-issue.html" class="btn-outline">&larr; Back to Current Issue</a>
+        </footer>
+    </article>
+''')
+                page_html = process_template(page_html, partials)
+
+                # Write output - use article- prefix for article pages
+                output_file = OUTPUT_DIR / f'article-{article_slug}.html'
+                output_file.write_text(page_html, encoding='utf-8')
+                print(f"    Generated: article-{article_slug}.html")
+                processed += 1
+
+        # Process the main issue markdown if it exists (for full issue view)
+        issue_md = issue_dir / 'issue.md'
+        if issue_md.exists():
+            content = issue_md.read_text(encoding='utf-8')
+            metadata, md_content = parse_front_matter(content)
+
+            # Convert markdown to HTML
+            base_image_path = f'images/issues/{issue_slug}/'
+            html_content = convert_markdown_to_html(md_content, base_image_path)
+
+            # Wrap in article layout
+            article_layout = layouts.get('article', layouts.get('base'))
+            title = metadata.get('title', f'{issue_slug} Issue')
+
+            # Create full page
+            page_html = article_layout.replace('{{title}}', title)
+            page_html = page_html.replace('{{content}}', f'''
+    <article class="article-full">
+        <header class="article-header">
+            <h1>{title}</h1>
+        </header>
+        <div class="article-body">
+            {html_content}
+        </div>
+    </article>
+''')
+            page_html = process_template(page_html, partials)
+
+            # Write output
+            output_file = OUTPUT_DIR / f'{issue_slug}-issue-content.html'
+            output_file.write_text(page_html, encoding='utf-8')
+            print(f"    Generated: {issue_slug}-issue-content.html")
+            processed += 1
+
+    return processed
 
 
 def copy_static_assets():
@@ -214,6 +405,10 @@ def build_templates():
         print(f"  {template_file.name} -> docs/{template_file.name}")
         templates_processed += 1
 
+    # Process markdown content
+    md_processed = process_markdown_content(layouts, partials)
+    templates_processed += md_processed
+
     print(f"\nBuild complete! Processed {templates_processed} template(s).")
     print(f"Output directory: {OUTPUT_DIR}")
     print("=" * 50 + "\n")
@@ -227,6 +422,11 @@ def get_file_mtimes():
     # Check all HTML files in src/
     for f in SRC_DIR.rglob('*.html'):
         mtimes[str(f)] = f.stat().st_mtime
+
+    # Check markdown files in content/
+    if CONTENT_DIR.exists():
+        for f in CONTENT_DIR.rglob('*.md'):
+            mtimes[str(f)] = f.stat().st_mtime
 
     # Also check CSS and JS
     for ext in ['css', 'js']:
