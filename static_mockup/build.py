@@ -26,6 +26,7 @@ import time
 import shutil
 import argparse
 import json
+import hashlib
 from pathlib import Path
 
 try:
@@ -64,6 +65,31 @@ BASE_PATH = '/GOSEMI'
 
 # Constant Contact subscribe URL
 CC_SUBSCRIBE_URL = 'https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D'
+
+# Asset version (computed at build time)
+ASSET_VERSION = None
+
+
+def compute_asset_version():
+    """Compute a hash based on CSS and JS file contents for cache busting."""
+    global ASSET_VERSION
+    hasher = hashlib.md5()
+
+    # Hash CSS files
+    css_dir = Path(__file__).parent / 'css'
+    if css_dir.exists():
+        for css_file in sorted(css_dir.glob('*.css')):
+            hasher.update(css_file.read_bytes())
+
+    # Hash JS files
+    js_dir = Path(__file__).parent / 'js'
+    if js_dir.exists():
+        for js_file in sorted(js_dir.glob('*.js')):
+            hasher.update(js_file.read_bytes())
+
+    # Use first 8 chars of hash
+    ASSET_VERSION = hasher.hexdigest()[:8]
+    return ASSET_VERSION
 
 
 def normalize_category(category):
@@ -234,6 +260,7 @@ def process_page_with_layout(page_content, layouts, partials, issue_metadata=Non
     result = result.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     result = result.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
     result = result.replace('{{base_path}}', BASE_PATH)
+    result = result.replace('{{asset_version}}', ASSET_VERSION or '')
 
     return result
 
@@ -380,6 +407,7 @@ def generate_article_page(article, issue_slug, issue_title, layouts, partials):
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
     page_html = page_html.replace('{{base_path}}', BASE_PATH)
+    page_html = page_html.replace('{{asset_version}}', ASSET_VERSION or '')
 
     return page_html
 
@@ -454,6 +482,7 @@ def generate_issue_page(issue, articles, layouts, partials):
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
     page_html = page_html.replace('{{base_path}}', BASE_PATH)
+    page_html = page_html.replace('{{asset_version}}', ASSET_VERSION or '')
 
     return page_html
 
@@ -526,6 +555,7 @@ def generate_issues_index(issues, issue_articles, layouts, partials):
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
     page_html = page_html.replace('{{base_path}}', BASE_PATH)
+    page_html = page_html.replace('{{asset_version}}', ASSET_VERSION or '')
 
     return page_html
 
@@ -611,6 +641,10 @@ def build_templates():
     print("\n" + "=" * 50)
     print("Building Go Semi and Beyond templates...")
     print("=" * 50)
+
+    # Compute asset version for cache busting
+    version = compute_asset_version()
+    print(f"\nAsset version: {version}")
 
     # Clean and create output directory
     if OUTPUT_DIR.exists():
