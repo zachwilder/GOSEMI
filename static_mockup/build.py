@@ -218,7 +218,19 @@ def process_page_with_layout(page_content, layouts, partials, issue_metadata=Non
             lighter_side_html = '<p style="color: var(--COLOR_TEXT_SECONDARY); font-style: italic;">Coming soon...</p>'
         result = result.replace('{{lighter_side_content}}', lighter_side_html)
 
+        # Podcast spotlight data
+        podcast_title = issue_metadata.get('podcast_title', 'Advantest Talks Semi')
+        podcast_excerpt = issue_metadata.get('podcast_excerpt', 'Listen to the latest episode of Advantest Talks Semi.')
+        podcast_slug = issue_metadata.get('podcast_slug', 'podcast-spotlight')
+        issue_slug = issue_metadata.get('issue_slug', CURRENT_ISSUE_SLUG)
+        result = result.replace('{{podcast_title}}', podcast_title)
+        result = result.replace('{{podcast_excerpt}}', podcast_excerpt)
+        result = result.replace('{{podcast_url}}', f'{BASE_PATH}/issues/{issue_slug}/{podcast_slug}/')
+
     result = result.replace('{{lighter_side_content}}', '')
+    result = result.replace('{{podcast_title}}', 'Advantest Talks Semi')
+    result = result.replace('{{podcast_excerpt}}', '')
+    result = result.replace('{{podcast_url}}', '#')
     result = result.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     result = result.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
     result = result.replace('{{base_path}}', BASE_PATH)
@@ -408,10 +420,15 @@ def generate_issue_page(issue, articles, layouts, partials):
     # Lighter side section
     lighter_side_image = issue.get('lighter_side_image', '')
     if lighter_side_image:
+        # Current issue uses /images/, archived issues use /images/archive/lighter-side/
+        if issue['slug'] == CURRENT_ISSUE_SLUG:
+            lighter_side_path = f'{BASE_PATH}/images/{lighter_side_image}'
+        else:
+            lighter_side_path = f'{BASE_PATH}/images/archive/lighter-side/{lighter_side_image}'
         issue_html += f'''
             <div class="lighter-side-section" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border);">
                 <h3>On the Lighter Side</h3>
-                <img src="{BASE_PATH}/images/archive/lighter-side/{lighter_side_image}" alt="On the Lighter Side - {issue['title']}" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
+                <img src="{lighter_side_path}" alt="On the Lighter Side - {issue['title']}" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
             </div>
 '''
 
@@ -514,7 +531,7 @@ def generate_issues_index(issues, issue_articles, layouts, partials):
 
 
 def get_current_issue_metadata():
-    """Load metadata from the current issue's index.md file."""
+    """Load metadata from the current issue's index.md file and articles."""
     issues_dir = CONTENT_DIR / 'issues'
     if not issues_dir.exists():
         return {}
@@ -533,6 +550,17 @@ def get_current_issue_metadata():
     content = index_file.read_text(encoding='utf-8')
     metadata, _ = parse_front_matter(content)
     metadata['issue_slug'] = current_issue_dir.name
+
+    # Load podcast spotlight data from articles
+    articles_dir = current_issue_dir / 'articles'
+    if articles_dir.exists():
+        podcast_file = articles_dir / 'podcast-spotlight.md'
+        if podcast_file.exists():
+            podcast_content = podcast_file.read_text(encoding='utf-8')
+            podcast_metadata, _ = parse_front_matter(podcast_content)
+            metadata['podcast_title'] = podcast_metadata.get('title', 'Advantest Talks Semi')
+            metadata['podcast_excerpt'] = podcast_metadata.get('excerpt', '')
+            metadata['podcast_slug'] = 'podcast-spotlight'
 
     return metadata
 
