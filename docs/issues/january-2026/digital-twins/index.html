@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="icon" type="image/png" href="/images/logo-circle-pcb.png">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/GOSEMI/images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="/GOSEMI/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,18 +16,18 @@
     <header>
         <div class="container main-nav-container">
             <div class="logo-container">
-                <a href="/" class="header-logo-link">
-                    <img src="/images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
-                    <img src="/images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                <a href="/GOSEMI/" class="header-logo-link">
+                    <img src="/GOSEMI/images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="/GOSEMI/images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
                     <span class="header-logo-text">GO SEMI & BEYOND</span>
                 </a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/issues/january-2026/">Current Issue</a></li>
-                    <li><a href="/issues/">Archive</a></li>
-                    <li><a href="/about/">About</a></li>
+                    <li><a href="/GOSEMI/">Home</a></li>
+                    <li><a href="/GOSEMI/issues/january-2026/">Current Issue</a></li>
+                    <li><a href="/GOSEMI/issues/">Archive</a></li>
+                    <li><a href="/GOSEMI/about/">About</a></li>
                     <li><a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" class="btn-small" target="_blank">Subscribe</a></li>
                 </ul>
             </nav>
@@ -50,7 +50,7 @@
 <p>IC testing plays a crucial role in guaranteeing product reliability across sectors like automotive, consumer electronics, and telecommunications. However, as devices become more heterogeneous---integrating multiple technologies in a single package---static, one-size-fits-all test approaches no longer suffice.</p>
 <p>These legacy methods often result in excessive test time, missed defects, or yield loss due to overly conservative test limits. The inability to adapt in real-time to device variability creates inefficiencies that can ripple across entire production lines, increasing costs and time-to-market.</p>
 <p>This is where <strong>AI/ML-driven adaptive testing</strong> comes in. By analyzing test data as it's generated, AI models can infer outcomes, flag anomalies, and dynamically alter test sequences. For example, if early-stage test results confidently predict a device's performance, tests can be optimized, saving time and resources. Conversely, AI can flag devices that may require additional scrutiny, focusing effort where it matters most.</p>
-<p><figure><img alt="Vmin prediction diagram" src="/images/issues/january-2026/image5.png" /><figcaption>Fig. 1. Vmin prediction leveraging feedforward data from prior test insertions to reduce test time</figcaption></figure></p>
+<p><figure><img alt="Vmin prediction diagram" src="/GOSEMI/images/issues/january-2026/image5.png" /><figcaption>Fig. 1. Vmin prediction leveraging feedforward data from prior test insertions to reduce test time</figcaption></figure></p>
 <h2 id="digital-twin-framework-overview">Digital Twin Framework: Overview</h2>
 <p>The proposed solution combines a <strong>real-time production environment</strong> with a <strong>cloud-based digital twin</strong>, creating a unified platform for intelligent test optimization. The digital twin serves as a sandbox for developing and validating AI/ML models, while the production environment enables real-time deployment and monitoring.</p>
 <h3 id="key-components">Key Components</h3>
@@ -82,12 +82,12 @@
 </li>
 </ul>
 <p>This tightly integrated setup allows dynamic test adjustments, reducing overall test time and improving yield without sacrificing reliability.</p>
-<p><figure><img alt="Production environment diagram" src="/images/issues/january-2026/image6.png" /><figcaption>Fig. 2. Diagram of production environment</figcaption></figure></p>
+<p><figure><img alt="Production environment diagram" src="/GOSEMI/images/issues/january-2026/image6.png" /><figcaption>Fig. 2. Diagram of production environment</figcaption></figure></p>
 <h2 id="virtual-testing-with-the-digital-twin">Virtual Testing with the Digital Twin</h2>
 <p>In parallel, a <strong>digital twin environment</strong> replicates the production setup on AWS, offering a safe, scalable space for innovation.</p>
 <p>This virtual lab uses cloud-hosted VMs to mimic the tester host controller, Edge Server, and Unified Server. Engineers can simulate real-time testing by replaying historical data, allowing them to train, test, and fine-tune AI/ML models without interfering with ongoing production.</p>
 <p>A web-based UI provides remote access and management, making collaboration possible regardless of location.</p>
-<p><figure><img alt="Digital twin environment diagram" src="/images/issues/january-2026/image7.png" /><figcaption>Fig. 3. Diagram of digital twin environment</figcaption></figure></p>
+<p><figure><img alt="Digital twin environment diagram" src="/GOSEMI/images/issues/january-2026/image7.png" /><figcaption>Fig. 3. Diagram of digital twin environment</figcaption></figure></p>
 <h2 id="synchronizing-real-and-virtual-worlds">Synchronizing Real and Virtual Worlds</h2>
 <p>For the framework to function effectively, the real and virtual environments must be tightly synchronized. This includes:</p>
 <ul>
@@ -101,21 +101,21 @@
 <p><strong>Security:</strong> All communications are encrypted with Transport Layer Security (TLS), aligning with zero-trust principles and protecting sensitive test data during transfer.</p>
 </li>
 </ul>
-<p><figure><img alt="Data synchronization diagram" src="/images/issues/january-2026/image8.png" /><figcaption>Fig. 4. Data synchronization between the digital twin and the production environment</figcaption></figure></p>
+<p><figure><img alt="Data synchronization diagram" src="/GOSEMI/images/issues/january-2026/image8.png" /><figcaption>Fig. 4. Data synchronization between the digital twin and the production environment</figcaption></figure></p>
 <h2 id="aiml-lifecycle-from-concept-to-deployment">AI/ML Lifecycle: From Concept to Deployment</h2>
 <p>The framework supports a structured AI/ML workflow designed for high agility and minimal disruption to production.</p>
 <h3 id="1-development">1. Development</h3>
 <p>Models are developed in the digital twin using historical or synthetic test data. Standard Test Data Format (STDF) files stored in AWS S3 can be used to simulate real-time streams to virtual ACS Edge Servers, allowing algorithm experimentation in a production-like context.</p>
-<p><figure><img alt="Development phase" src="/images/issues/january-2026/image9.png" /><figcaption>Fig. 5. Development</figcaption></figure></p>
+<p><figure><img alt="Development phase" src="/GOSEMI/images/issues/january-2026/image9.png" /><figcaption>Fig. 5. Development</figcaption></figure></p>
 <h3 id="2-validation">2. Validation</h3>
 <p>Before deployment, models undergo statistical validation using techniques like cross-validation or hold-out testing. Engineers can run simulations combining the virtual tester and Edge Server to understand real-world impacts on yield and quality.</p>
-<p><figure><img alt="Validation phase" src="/images/issues/january-2026/image10.png" /><figcaption>Fig. 6. Validation</figcaption></figure></p>
+<p><figure><img alt="Validation phase" src="/GOSEMI/images/issues/january-2026/image10.png" /><figcaption>Fig. 6. Validation</figcaption></figure></p>
 <h3 id="3-deployment">3. Deployment</h3>
 <p>Deployment is managed through <strong>AWS IoT Jobs</strong>, which automates container delivery. Models are packaged into containers, pushed to the digital twin Unified Server, and then replicated to production Unified Servers and deployed to Edge Servers.</p>
-<p><figure><img alt="Deployment phase" src="/images/issues/january-2026/image11.png" /><figcaption>Fig. 7. Deployment</figcaption></figure></p>
+<p><figure><img alt="Deployment phase" src="/GOSEMI/images/issues/january-2026/image11.png" /><figcaption>Fig. 7. Deployment</figcaption></figure></p>
 <h3 id="4-monitoring">4. Monitoring</h3>
 <p>Once live, the digital twin tracks model performance using MQTT data feeds. KPIs such as prediction accuracy, false positive rates, and statistical drift are monitored to assess effectiveness.</p>
-<p><figure><img alt="Monitoring phase" src="/images/issues/january-2026/image12.png" /><figcaption>Fig. 8. Monitoring</figcaption></figure></p>
+<p><figure><img alt="Monitoring phase" src="/GOSEMI/images/issues/january-2026/image12.png" /><figcaption>Fig. 8. Monitoring</figcaption></figure></p>
 <h3 id="5-updatingredeployment">5. Updating/Redeployment</h3>
 <p>If performance degrades, new models are trained and validated in the digital twin, then redeployed. This update process is designed to avoid interfering with ongoing testing, supporting continuous optimization.</p>
 <h2 id="implementation-insights-and-use-case">Implementation Insights and Use Case</h2>
@@ -143,7 +143,7 @@
 <p>This digital twin framework showcases how cloud-based virtualization, real-time data synchronization, and scalable AI/ML deployment can modernize the semiconductor testing landscape. By bridging the gap between development and production, it paves the way for smarter manufacturing and faster innovation---exactly what the industry needs in an era of relentless progress.</p>
         </div>
         <div class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
-            <a href="/issues/january-2026/" class="btn-outline">&larr; Back to January 2026 Issue</a>
+            <a href="/GOSEMI/issues/january-2026/" class="btn-outline">&larr; Back to January 2026 Issue</a>
             
         </div>
     </article>
@@ -159,9 +159,9 @@
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/issues/january-2026/">Current Issue</a></li>
-                        <li><a href="/issues/">Archive</a></li>
-                        <li><a href="/about/">About</a></li>
+                        <li><a href="/GOSEMI/issues/january-2026/">Current Issue</a></li>
+                        <li><a href="/GOSEMI/issues/">Archive</a></li>
+                        <li><a href="/GOSEMI/about/">About</a></li>
                         <li><a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" target="_blank">Subscribe</a></li>
                     </ul>
                 </div>
@@ -189,6 +189,6 @@
     </footer>
 
 
-    <script src="/js/main.js"></script>
+    <script src="/GOSEMI/js/main.js"></script>
 </body>
 </html>

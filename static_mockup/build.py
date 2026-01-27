@@ -59,6 +59,9 @@ CATEGORY_MAPPING = {
 # Current issue slug (update this when publishing a new issue)
 CURRENT_ISSUE_SLUG = 'january-2026'
 
+# Base path for GitHub Pages (set to '' for local/root deployment, '/GOSEMI' for project site)
+BASE_PATH = '/GOSEMI'
+
 # Constant Contact subscribe URL
 CC_SUBSCRIBE_URL = 'https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D'
 
@@ -210,7 +213,7 @@ def process_page_with_layout(page_content, layouts, partials, issue_metadata=Non
         lighter_side_image = issue_metadata.get('lighter_side_image', '')
         lighter_side_alt = issue_metadata.get('lighter_side_alt', 'On the Lighter Side')
         if lighter_side_image:
-            lighter_side_html = f'<img src="{prefix}images/{lighter_side_image}" alt="{lighter_side_alt}" style="width: 100%; border-radius: 8px;">'
+            lighter_side_html = f'<img src="{BASE_PATH}/images/{lighter_side_image}" alt="{lighter_side_alt}" style="width: 100%; border-radius: 8px;">'
         else:
             lighter_side_html = '<p style="color: var(--COLOR_TEXT_SECONDARY); font-style: italic;">Coming soon...</p>'
         result = result.replace('{{lighter_side_content}}', lighter_side_html)
@@ -218,6 +221,7 @@ def process_page_with_layout(page_content, layouts, partials, issue_metadata=Non
     result = result.replace('{{lighter_side_content}}', '')
     result = result.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     result = result.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
+    result = result.replace('{{base_path}}', BASE_PATH)
 
     return result
 
@@ -266,7 +270,7 @@ def load_issues_data():
                     'original_url': metadata.get('original_url', ''),
                     'year': year,
                     'md_content': md_content,
-                    'image_path': '/images/archive/',
+                    'image_path': f'{BASE_PATH}/images/archive/',
                 }
 
     # Load articles from content/issues/{issue-slug}/articles/ (current/new content)
@@ -296,7 +300,7 @@ def load_issues_data():
                         'original_url': '',
                         'year': issue_slug.split('-')[-1] if '-' in issue_slug else '',
                         'md_content': md_content,
-                        'image_path': f'/images/issues/{issue_slug}/',
+                        'image_path': f'{BASE_PATH}/images/issues/{issue_slug}/',
                     }
 
     # Map articles to issues
@@ -339,7 +343,7 @@ def generate_article_page(article, issue_slug, issue_title, layouts, partials):
     header_html += ' &bull; '.join(meta_parts)
     header_html += '</div>'
 
-    back_link = f'<a href="/issues/{issue_slug}/" class="btn-outline">&larr; Back to {issue_title} Issue</a>'
+    back_link = f'<a href="{BASE_PATH}/issues/{issue_slug}/" class="btn-outline">&larr; Back to {issue_title} Issue</a>'
     original_link = f'<a href="{article["original_url"]}" class="btn-outline" target="_blank">View Original</a>' if article.get('original_url') else ''
 
     layout = layouts.get('base')
@@ -363,6 +367,7 @@ def generate_article_page(article, issue_slug, issue_title, layouts, partials):
     page_html = process_template(page_html, partials)
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
+    page_html = page_html.replace('{{base_path}}', BASE_PATH)
 
     return page_html
 
@@ -373,7 +378,7 @@ def generate_issue_page(issue, articles, layouts, partials):
     <div class="issue-page">
         <header class="issue-header">
             <h1>{issue['title']} Issue</h1>
-            <p><a href="/issues/">&larr; Back to All Issues</a></p>
+            <p><a href="{BASE_PATH}/issues/">&larr; Back to All Issues</a></p>
         </header>
         <div class="issue-content">
 '''
@@ -391,7 +396,7 @@ def generate_issue_page(issue, articles, layouts, partials):
             <article class="issue-article-item">
                 <div class="issue-article-content">
                     {category_badge}
-                    <h3><a href="/issues/{issue['slug']}/{article['slug']}/">{article['title']}</a></h3>
+                    <h3><a href="{BASE_PATH}/issues/{issue['slug']}/{article['slug']}/">{article['title']}</a></h3>
                     {f'<p class="article-excerpt">{excerpt}</p>' if excerpt else ''}
                 </div>
             </article>
@@ -406,7 +411,7 @@ def generate_issue_page(issue, articles, layouts, partials):
         issue_html += f'''
             <div class="lighter-side-section" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border);">
                 <h3>On the Lighter Side</h3>
-                <img src="/images/archive/lighter-side/{lighter_side_image}" alt="On the Lighter Side - {issue['title']}" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
+                <img src="{BASE_PATH}/images/archive/lighter-side/{lighter_side_image}" alt="On the Lighter Side - {issue['title']}" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
             </div>
 '''
 
@@ -431,6 +436,7 @@ def generate_issue_page(issue, articles, layouts, partials):
     page_html = process_template(page_html, partials)
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
+    page_html = page_html.replace('{{base_path}}', BASE_PATH)
 
     return page_html
 
@@ -469,7 +475,7 @@ def generate_issues_index(issues, issue_articles, layouts, partials):
         for issue in year_issues_sorted:
             article_count = len(issue_articles.get(issue['slug'], []))
             archive_html += f'''
-                <a href="/issues/{issue['slug']}/" class="issue-card">
+                <a href="{BASE_PATH}/issues/{issue['slug']}/" class="issue-card">
                     <div class="issue-card-content">
                         <h3>{issue['title']}</h3>
                         <p class="issue-article-count">{article_count} articles</p>
@@ -502,6 +508,7 @@ def generate_issues_index(issues, issue_articles, layouts, partials):
     page_html = process_template(page_html, partials)
     page_html = page_html.replace('{{subscribe_url}}', CC_SUBSCRIBE_URL)
     page_html = page_html.replace('{{current_issue}}', CURRENT_ISSUE_SLUG)
+    page_html = page_html.replace('{{base_path}}', BASE_PATH)
 
     return page_html
 
