@@ -1,5 +1,67 @@
 [
   {
+    "title": "January 2026",
+    "month": "January",
+    "year": "2026",
+    "url": "",
+    "slug": "january-2026",
+    "articles": [
+      {
+        "slug": "singulated-die-test",
+        "text": "Top Story"
+      },
+      {
+        "slug": "digital-twins",
+        "text": "Top Story"
+      },
+      {
+        "slug": "siconic",
+        "text": "Top Story"
+      },
+      {
+        "slug": "executive-viewpoint",
+        "text": "Executive Viewpoint"
+      },
+      {
+        "slug": "cxo-interview",
+        "text": "Spotlight on Business"
+      },
+      {
+        "slug": "featured-products",
+        "text": "Featured Products"
+      },
+      {
+        "slug": "semicon-west",
+        "text": "Featured Event"
+      },
+      {
+        "slug": "esg-spotlight",
+        "text": "ESG"
+      },
+      {
+        "slug": "podcast-spotlight",
+        "text": "Podcast"
+      },
+      {
+        "slug": "news",
+        "text": "News"
+      },
+      {
+        "slug": "upcoming-events",
+        "text": "Events"
+      },
+      {
+        "slug": "lighter-side",
+        "text": "On the Lighter Side"
+      },
+      {
+        "slug": "go-poll",
+        "text": "GO POLL"
+      }
+    ],
+    "lighter_side_image": "age-of-complexity.jpg"
+  },
+  {
     "title": "September 2025",
     "month": "September",
     "year": "2025",

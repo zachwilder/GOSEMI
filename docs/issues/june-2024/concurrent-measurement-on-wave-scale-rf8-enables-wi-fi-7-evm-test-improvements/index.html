@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="/images/logo-circle-pcb.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Concurrent Measurement on Wave Scale RF8 Enables Wi-Fi 7 EVM Test Improvements - Go Semi & Beyond</title>
+</head>
+<body class="">
+    <header>
+        <div class="container main-nav-container">
+            <div class="logo-container">
+                <a href="/" class="header-logo-link">
+                    <img src="/images/logo-gosemi-new.svg" alt="Go Semi & Beyond" class="header-logo header-logo-full" width="302" height="80">
+                    <img src="/images/logo-circle-pcb.png" alt="Go Semi & Beyond" class="header-logo-circle" width="45" height="45">
+                    <span class="header-logo-text">GO SEMI & BEYOND</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/issues/january-2026/">Current Issue</a></li>
+                    <li><a href="/issues/">Archive</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" class="btn-small" target="_blank">Subscribe</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <article class="article-page archive-article">
+        <div class="article-header">
+            <h1>Concurrent Measurement on Wave Scale RF8 Enables Wi-Fi 7 EVM Test Improvements</h1><div class="article-meta"><span class="article-label">Top Stories</span> &bull; <span class="article-date">June 2024 Issue</span></div>
+        </div>
+        <div class="article-body">
+            <p><em>By Joerg-Walter Mohr, Product Definition Expert, Advantest Corp.</em></p>
+<p>The November 2022 issue of <em>GO SEMI &amp; Beyond</em> included an <a href="https://www.gosemiandbeyond.com/wave-scale-rf8-ready-for-wi-fi-7/">article</a> detailing how Advantest has evolved our Wave Scale family of test cards for the V93000 test platform by readying Wave Scale RF8 to address the test challenges associated with the forthcoming Wi-Fi 7 standard. This article provides further details on how to augment the Wave Scale RF8 solution by putting an additional splitter on the load board. With this splitter, two RF measurement systems can be used concurrently/simultaneously to improve the EVM measurement of one DUT RF signal.</p>
+<p>The Wi-Fi 7 standard covers the now less congested frequency range between 6 GHz and 7.125 GHz, which was opened as an extension to Wi-Fi 6 and called Wi-Fi 6E. Wi-Fi 7 utilizes this wide 6 GHz Band with channel bandwidth up to 320 MHz and going up to 4096 Quadrature Amplitude Modulation (QAM) schemes.</p>
+<p>The Wave Scale RF8 solution addresses the test challenges associated with Wi-Fi 7 by providing the frequency range and the bandwidth needed in an industry-proven instrument (Figure 1). </p>
+<p><em>Figure 1.  Wave Scale RF8 enables measurements that fully address the frequency and bandwidth expansions associated with the Wi-Fi 7 standard.</em></p>
+<p>The Error Vector Magnitude (EVM) of the modulated/demodulated symbols is an important figure of merit to describe the signal fidelity. EVM is measured either in % or in dB, where dB is used for smaller values for better readability. Wi-Fi 7 standard allows device transmitters to reach an EVM of -38 dB at most. Thus, devices will have better specs and production test equipment must be able to check those, e.g. -41 dB must be checked, which means test measurement unit should provide at least an EVM test capability of -44 dB if the device has a 3dB margin. Of course, for characterization purposes it is desired to have a test measurement unit with an EVM better than -50 dB.</p>
+<p><em>Figure 2.  Wave Scale RF8 concurrently measures with two RF subsystems </em><em>one DUT Tx signal by adding a splitter on the load board.</em></p>
+<p>Wave Scale RF8 EVM measurement performance can be improved by putting an additional splitter on the load board to enable the use of two RF subsystems simultaneously, as shown in Figure 2. By evaluating for each demodulated symbol the EVM, which is commonly detected by both RF subsystems, and neglecting the individual contributions to EVM of each RF subsystem, -50 dB EVM measurement capability is enabled for Wi-Fi 7 160 MHz 4096 QAM as shown in Figure 3.</p>
+<p><em>Figure 3.  EVM concurrentMeasAB test -50 dB for highest carrier frequency of Wi-Fi 7 160 MHz. Result with and without splitter for 160 MHz plus common error.</em></p>
+<p>The reduced dynamic range due to the loss via the splitter can be compensated for by averaging in cases where the focus of the test is the detection of impairments caused by non-linearities. With averaging even for Wi-Fi 7 320MHz -50 dB EVM test capability can be achieved as shown in Figure 4.</p>
+<p><em>Figure 4.  EVM concurrentMeasAB +</em> <em>averaging test -50 dB for different frequency of Wi-Fi 7 320 MHz.</em></p>
+<p><strong>Summary</strong></p>
+<p>Using the high parallelism of the Wave Scale RF8 together with advanced test method addresses higher test requirements of the new standards like Wi-Fi 7 in the sub 8GHz frequency range. This might even be true for some upcoming FR3 applications in 5G/6G bands.<img alt="" src="/images/archive/concurrent-measurement-on-wave-scale-rf8-enables-wi-fi-7-evm-test-improvements-1.png" /></p>
+<p><img alt="" src="/images/archive/concurrent-measurement-on-wave-scale-rf8-enables-wi-fi-7-evm-test-improvements-2.png" /></p>
+<p><img alt="" src="/images/archive/concurrent-measurement-on-wave-scale-rf8-enables-wi-fi-7-evm-test-improvements-3.png" /></p>
+<p><img alt="" src="/images/archive/concurrent-measurement-on-wave-scale-rf8-enables-wi-fi-7-evm-test-improvements-4.png" /></p>
+        </div>
+        <div class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
+            <a href="/issues/june-2024/" class="btn-outline">&larr; Back to June 2024 Issue</a>
+            <a href="https://www.gosemiandbeyond.com/concurrent-measurement-on-wave-scale-rf8-enables-wi-fi-7-evm-test-improvements/" class="btn-outline" target="_blank">View Original</a>
+        </div>
+    </article>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>GO SEMI & BEYOND</h4>
+                    <p>Advantest's newsletter focused on the semiconductor industry and beyond. Delivering insights on test innovation, industry trends, and emerging technologies.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/issues/january-2026/">Current Issue</a></li>
+                        <li><a href="/issues/">Archive</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" target="_blank">Subscribe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: corpcomms@advantest.com</li>
+                        <li>Marketing: mktgcomms@advantest.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Advantest</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/advantest" title="LinkedIn">in</a>
+                        <a href="https://www.youtube.com/advantest" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/advantest" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/advantest" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Advantest Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
