@@ -161,6 +161,15 @@ def convert_markdown_to_html(md_content, base_image_path='images/'):
     return html
 
 
+def fix_relative_paths(html, prefix):
+    """Fix relative paths in HTML by adding a prefix for nested pages."""
+    # Fix src attributes (images, scripts)
+    html = re.sub(r'src="(?!https?://|//)(?!\.\./)([^"]+)"', f'src="{prefix}\\1"', html)
+    # Fix href attributes (css, links) but not anchors or absolute URLs
+    html = re.sub(r'href="(?!https?://|//|#|mailto:)(?!\.\./)([^"]+)"', f'href="{prefix}\\1"', html)
+    return html
+
+
 def process_template(content, partials):
     """Process a template, replacing partial includes with their content."""
     # Pattern matches {{> partial_name }} with optional whitespace
@@ -245,8 +254,8 @@ def process_archive_content(layouts, partials):
             title = metadata.get('title', article_slug.replace('-', ' ').title())
             md_content = re.sub(rf'^#\s*{re.escape(title)}\s*\n*', '', md_content, flags=re.MULTILINE)
 
-            # Convert markdown to HTML
-            base_image_path = 'images/archive/'
+            # Convert markdown to HTML (use relative path from archive/year/ directory)
+            base_image_path = '../../images/archive/'
             html_content = convert_markdown_to_html(md_content, base_image_path)
 
             # Get metadata values
@@ -293,12 +302,15 @@ def process_archive_content(layouts, partials):
             {html_content}
         </div>
         <footer class="article-footer" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);">
-            <a href="../archive.html" class="btn-outline">&larr; Back to Archive</a>
+            <a href="../../archive.html" class="btn-outline">&larr; Back to Archive</a>
             {f'<a href="{original_url}" class="btn-outline" target="_blank">View Original</a>' if original_url else ''}
         </footer>
     </article>
 ''')
             page_html = process_template(page_html, partials)
+
+            # Fix relative paths for nested archive pages (archive/year/)
+            page_html = fix_relative_paths(page_html, '../../')
 
             # Write output
             output_file = year_output_dir / f'{article_slug}.html'
