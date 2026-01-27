@@ -4,6 +4,8 @@ date: 2026-01-28
 issue_number: "Vol. 1, No. 1"
 description: "Advantest's newsletter focused on the semiconductor industry and beyond."
 featured_image: null
+lighter_side_image: age-of-complexity.jpg
+lighter_side_alt: "Age of Complexity - cartoon illustration"
 ---
 
 # January 2026 Issue

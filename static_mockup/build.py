@@ -490,7 +490,7 @@ def generate_issue_page(issue, articles, layouts, partials, output_dir):
         <div class="container">
             <h2>Stay Informed</h2>
             <p>Subscribe to Go Semi & Beyond for the latest semiconductor insights.</p>
-            <a href="subscribe.html" class="btn-primary">Subscribe Today</a>
+            <a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" class="btn-primary" target="_blank">Subscribe Today</a>
         </div>
     </section>
 '''
@@ -566,7 +566,7 @@ def generate_archive_index_page(issues, issue_articles, unassigned, layouts, par
         <div class="container">
             <h2>Stay Informed</h2>
             <p>Subscribe to Go Semi & Beyond for the latest semiconductor insights.</p>
-            <a href="subscribe.html" class="btn-primary">Subscribe Today</a>
+            <a href="https://visitor.r20.constantcontact.com/manage/optin?v=001y_Bo5goCBKQ5mpCMPMk9NZ99QMnLrLllc1SVvjz3oBDPSK7NuaD2lmbp7Qd60Oy3ftqVE4iZfLT8xvaduZ92LDuKgDRcJgGp19iRFGA-2EqbiZuQnFXcLv5m5oWB7xioLSQR2RO7XNixpn3YPSNXUJ4X2lHntVromrWTUzGfYQ4%3D" class="btn-primary" target="_blank">Subscribe Today</a>
         </div>
     </section>
 '''
