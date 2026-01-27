@@ -46,7 +46,9 @@
         "slug": "esg-spotlight-september-2025",
         "text": "ESG Spotlight"
       }
-    ]
+    ],
+    "lighter_side_image": "september-2025.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2025/09/Robotics-75pcnt-1.jpg"
   },
   {
     "title": "March 2024",
@@ -110,7 +112,9 @@
         "slug": "esg-spotlight-march-2024",
         "text": "here."
       }
-    ]
+    ],
+    "lighter_side_image": "march-2024.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2024/03/VOICE-75pcnt.jpg"
   },
   {
     "title": "June 2024",
@@ -169,7 +173,9 @@
         "slug": "esg-spotlight-june-2024",
         "text": "here."
       }
-    ]
+    ],
+    "lighter_side_image": "june-2024.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2024/06/Autonomous-Vehicles.jpg"
   },
   {
     "title": "March 2023",
@@ -233,7 +239,9 @@
         "slug": "navigating-the-semiconductor-slowdown-insights-on-the-industry-in-2023",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "march-2023.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2023/03/Zettabytes-75pcnt.jpg"
   },
   {
     "title": "June 2023",
@@ -292,7 +300,9 @@
         "slug": "esg-spotlight",
         "text": "here"
       }
-    ]
+    ],
+    "lighter_side_image": "june-2023.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2023/06/Metaverse-75pcnt.jpg"
   },
   {
     "title": "November 2022",
@@ -351,7 +361,9 @@
         "slug": "more-than-moore-or-more-moore",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "november-2022.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2022/11/Metaverse-75pcnt.jpg"
   },
   {
     "title": "April 2022",
@@ -390,7 +402,9 @@
         "slug": "advantest-joins-european-gan4ap-consortium-to-promote-pervasive-use-of-gallium-nitride-in-power-conversion-systems",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "april-2022.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2022/04/VOICE-Developer-Conference-75pcnt-2.jpg"
   },
   {
     "title": "November 2021",
@@ -404,7 +418,9 @@
         "slug": "qa-advantest-cloud-solutions-ecosystem",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "november-2021.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2021/11/System-Level-Test-75pcnt.jpg"
   },
   {
     "title": "March 2021",
@@ -412,7 +428,9 @@
     "year": "2021",
     "url": "https://www.gosemiandbeyond.com/february-2021-issue/",
     "slug": "march-2021",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "march-2021.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2021/02/Edge-Artificial-Intelligence-75pcnt.jpg"
   },
   {
     "title": "June 2021",
@@ -456,7 +474,9 @@
         "slug": "advantest-again-named-the-best-supplier-of-chip-making-equipment-in-vlsiresearch-customer-satisfaction-survey",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "june-2021.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2021/06/VOICE-Developer-Conference-75pcnt.jpg"
   },
   {
     "title": "October 2020",
@@ -505,7 +525,9 @@
         "slug": "advantests-myadvantest-online-portal-provides-24-7-access-to-digital-products-and-web-based-services",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "october-2020.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2020/09/System-Level-Test-SIZED.jpg"
   },
   {
     "title": "April 2020",
@@ -549,7 +571,9 @@
         "slug": "advantests-inaugural-virtual-tradeshow-draws-nearly-200-attendees-from-47-companies",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "april-2020.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2020/04/april20-cartoon-sm.jpg"
   },
   {
     "title": "September 2019",
@@ -557,7 +581,9 @@
     "year": "2019",
     "url": "https://www.gosemiandbeyond.com/september-2019-issue/",
     "slug": "september-2019",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "september-2019.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2019/09/Artificial-Intelligence-100pcnt.jpg"
   },
   {
     "title": "May 2019",
@@ -565,7 +591,9 @@
     "year": "2019",
     "url": "https://www.gosemiandbeyond.com/may-2019/",
     "slug": "may-2019",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "may-2019.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2019/05/5G-Illustration.jpg"
   },
   {
     "title": "March 2019",
@@ -573,7 +601,9 @@
     "year": "2019",
     "url": "https://www.gosemiandbeyond.com/march-2019/",
     "slug": "march-2019",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "march-2019.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2019/03/VOICE-Developer-Conference-100pcnt-copy.jpg"
   },
   {
     "title": "December 2019",
@@ -581,7 +611,9 @@
     "year": "2019",
     "url": "https://www.gosemiandbeyond.com/december-2019-issue/",
     "slug": "december-2019",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "december-2019.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2019/12/Extreme-Thermal-Test-100pcnt.jpg"
   },
   {
     "title": "May 2018",
@@ -589,7 +621,9 @@
     "year": "2018",
     "url": "https://www.gosemiandbeyond.com/may-2018-issue/",
     "slug": "may-2018",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "may-2018.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2018/05/VOICE-Developer-Conference-100pcnt.jpg"
   },
   {
     "title": "February 2018",
@@ -628,7 +662,9 @@
         "slug": "qa-interview",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "february-2018.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2018/02/System-Level-Test.jpg"
   },
   {
     "title": "December 2018",
@@ -682,7 +718,9 @@
         "slug": "advantest-to-exhibit-wide-range-of-semiconductor-test-solutions-enabling-5g-connectivity-at-semicon-japan-on-december-12-14",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "december-2018.jpeg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2018/12/GoSemi-Dec-cartoon-1.jpeg"
   },
   {
     "title": "August 2018",
@@ -731,7 +769,9 @@
         "slug": "voice-2018-sets-records-with-highest-number-of-abstract-submissions-from-13-countries",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "august-2018.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2018/08/PCIe-GEN-4-100pcnt.jpg"
   },
   {
     "title": "November 2017",
@@ -745,7 +785,9 @@
         "slug": "smartshell-a-unique-software-interface-for-design-and-production",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "november-2017.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2017/11/System-Level-Test1.jpg"
   },
   {
     "title": "May 2017",
@@ -753,7 +795,9 @@
     "year": "2017",
     "url": "https://www.gosemiandbeyond.com/may-2017/",
     "slug": "may-2017",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "may-2017.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2017/05/VOICE-Developer-Conference.jpg"
   },
   {
     "title": "February 2017",
@@ -761,7 +805,9 @@
     "year": "2017",
     "url": "https://www.gosemiandbeyond.com/february-2017/",
     "slug": "february-2017",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "february-2017.png",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2017/02/Stress_Test.png"
   },
   {
     "title": "August 2017",
@@ -775,7 +821,9 @@
         "slug": "five-key-success-factors-for-automotive-device-test",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "august-2017.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2017/08/High-Speed-Digital2.jpg"
   },
   {
     "title": "November 2016",
@@ -783,7 +831,9 @@
     "year": "2016",
     "url": "https://www.gosemiandbeyond.com/november-2016/",
     "slug": "november-2016",
-    "articles": []
+    "articles": [],
+    "lighter_side_image": "november-2016.png",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2016/11/FA-thumb.png"
   },
   {
     "title": "July 2016",
@@ -857,7 +907,9 @@
         "slug": "out-of-the-lab-and-into-the-field-making-iot-device-testing-portable",
         "text": "Read More."
       }
-    ]
+    ],
+    "lighter_side_image": "july-2016.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2016/07/IOT-lighter-side.jpg"
   },
   {
     "title": "November 2015",
@@ -906,6 +958,8 @@
         "slug": "solid-state-drives-2",
         "text": ""
       }
-    ]
+    ],
+    "lighter_side_image": "november-2015.jpg",
+    "lighter_side_url": "https://www.gosemiandbeyond.com/wp-content/uploads/2015/11/Solid-State-Drives.jpg"
   }
 ]

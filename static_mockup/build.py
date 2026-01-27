@@ -54,6 +54,16 @@ STATIC_DIRS = ['css', 'js', 'images']
 # Files/directories to ignore
 IGNORE_PATTERNS = ['partials', 'layouts', 'pages']
 
+# Category display name mappings
+CATEGORY_MAPPING = {
+    'Upcoming Events': 'Events',
+}
+
+
+def normalize_category(category):
+    """Normalize category names for display."""
+    return CATEGORY_MAPPING.get(category, category)
+
 
 def load_partials():
     """Load all partial templates from the partials directory."""
@@ -217,7 +227,7 @@ def process_template(content, partials):
     return re.sub(pattern, replace_partial, content)
 
 
-def process_page_with_layout(page_content, layouts, partials):
+def process_page_with_layout(page_content, layouts, partials, issue_metadata=None):
     """Process a page file with front-matter and apply layout."""
     # Parse front-matter
     metadata, content = parse_front_matter(page_content)
@@ -237,6 +247,20 @@ def process_page_with_layout(page_content, layouts, partials):
 
     # Process partials
     result = process_template(result, partials)
+
+    # Replace dynamic content placeholders from current issue
+    if issue_metadata:
+        # Lighter side content
+        lighter_side_image = issue_metadata.get('lighter_side_image', '')
+        lighter_side_alt = issue_metadata.get('lighter_side_alt', 'On the Lighter Side')
+        if lighter_side_image:
+            lighter_side_html = f'<img src="images/{lighter_side_image}" alt="{lighter_side_alt}" style="width: 100%; border-radius: 8px;">'
+        else:
+            lighter_side_html = '<p style="color: var(--COLOR_TEXT_SECONDARY); font-style: italic;">Coming soon...</p>'
+        result = result.replace('{{lighter_side_content}}', lighter_side_html)
+
+    # Clean up any remaining placeholders
+    result = result.replace('{{lighter_side_content}}', '')
 
     return result
 
@@ -351,7 +375,8 @@ def process_archive_content(layouts, partials):
         header_html += '<div class="article-meta">'
         meta_parts = []
         if article['category']:
-            meta_parts.append(f'<span class="article-label">{article["category"]}</span>')
+            display_category = normalize_category(article['category'])
+            meta_parts.append(f'<span class="article-label">{display_category}</span>')
         if article_issue:
             meta_parts.append(f'<span class="article-date">{article_issue["title"]} Issue</span>')
         else:
@@ -427,7 +452,8 @@ def generate_issue_page(issue, articles, layouts, partials, output_dir):
     if articles:
         issue_html += '<div class="issue-articles">'
         for article in articles:
-            category_badge = f'<span class="article-label">{article["category"]}</span>' if article.get('category') else ''
+            display_category = normalize_category(article.get('category', '')) if article.get('category') else ''
+            category_badge = f'<span class="article-label">{display_category}</span>' if display_category else ''
             # Clean up excerpt - remove "Posted in" text
             excerpt = article.get('excerpt', '')
             excerpt = re.sub(r'^Posted\s+in\s+\S+\s*', '', excerpt).strip()
@@ -445,6 +471,16 @@ def generate_issue_page(issue, articles, layouts, partials, output_dir):
         issue_html += '</div>'
     else:
         issue_html += '<p class="no-articles">No articles available for this issue.</p>'
+
+    # Add "On the Lighter Side" section if image exists
+    lighter_side_image = issue.get('lighter_side_image', '')
+    if lighter_side_image:
+        issue_html += f'''
+            <div class="lighter-side-section" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border);">
+                <h3>On the Lighter Side</h3>
+                <img src="../images/archive/lighter-side/{lighter_side_image}" alt="On the Lighter Side - {issue['title']}" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
+            </div>
+'''
 
     issue_html += '''
         </div>
@@ -675,6 +711,30 @@ def process_markdown_content(layouts, partials):
     return processed
 
 
+def get_current_issue_metadata():
+    """Load metadata from the current issue's index.md file."""
+    issues_dir = CONTENT_DIR / 'issues'
+    if not issues_dir.exists():
+        return {}
+
+    # Find the most recent issue (by directory name or date in metadata)
+    issue_dirs = sorted([d for d in issues_dir.iterdir() if d.is_dir()], reverse=True)
+    if not issue_dirs:
+        return {}
+
+    current_issue_dir = issue_dirs[0]
+    index_file = current_issue_dir / 'index.md'
+
+    if not index_file.exists():
+        return {}
+
+    content = index_file.read_text(encoding='utf-8')
+    metadata, _ = parse_front_matter(content)
+    metadata['issue_slug'] = current_issue_dir.name
+
+    return metadata
+
+
 def copy_static_assets():
     """Copy static asset directories (css, js, images) to output directory."""
     print("\nCopying static assets:")
@@ -714,6 +774,16 @@ def build_templates():
     if not layouts:
         print("  No layouts found in", LAYOUTS_DIR)
 
+    # Load current issue metadata for dynamic content
+    print("\nLoading current issue metadata:")
+    issue_metadata = get_current_issue_metadata()
+    if issue_metadata:
+        print(f"  Current issue: {issue_metadata.get('title', 'Unknown')}")
+        if issue_metadata.get('lighter_side_image'):
+            print(f"  Lighter side image: {issue_metadata.get('lighter_side_image')}")
+    else:
+        print("  No current issue found")
+
     templates_processed = 0
 
     # Process pages from src/pages/ (new layout-based system)
@@ -721,7 +791,7 @@ def build_templates():
         print("\nProcessing pages (with layouts):")
         for page_file in PAGES_DIR.glob('*.html'):
             content = page_file.read_text(encoding='utf-8')
-            processed = process_page_with_layout(content, layouts, partials)
+            processed = process_page_with_layout(content, layouts, partials, issue_metadata)
 
             output_file = OUTPUT_DIR / page_file.name
             output_file.write_text(processed, encoding='utf-8')
